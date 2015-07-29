@@ -1,0 +1,73 @@
+﻿
+.hero-move {
+
+}
+.pair-base {
+    position: relative;
+    overflow: visible;
+    width: 0;
+    height: 0;
+    z-index: 2;
+    .pair-moving {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+}
+
+playing-card {
+    margin-right:-20px;
+transform: rotate(4deg);
+}
+
+.card {
+    transform: rotate(10deg);
+    width: 50px;
+    height: 70px;
+    background-color: #fff;
+    float: left;
+    margin-right: -49px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid silver;
+    z-index: 1;
+}
+
+.play {
+    .card {
+        margin-right: -40px;
+    }
+}
+
+
+    .card {
+
+        &.big {
+        width: 75px;
+        height: 105px;  
+       /*background-color:yellow; */
+       transform:rotate(30deg); 
+        }
+        
+    }
+
+
+.hero-transition.hero-leave {
+    visibility: hidden;
+}
+
+.hero-transition.ng-leave {
+    visibility: visible;
+}
+
+.hero-transfer {
+    /*width: 100px;*/
+}
+
+.hero-animating {
+    transform-style: preserve-3d;
+    transition: all ease-in-out 1s;
+    position: absolute;
+    z-index: 10000;
+}

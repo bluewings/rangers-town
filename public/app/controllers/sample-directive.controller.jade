@@ -1,0 +1,296 @@
+div(sample-directive-controller='')
+  .container
+    .panel.panel-primary
+      .panel-heading
+        strong RANGER DIRECTIVE
+      .panel-body
+        .row
+          .col-sm-6
+            .form-group(style='display:block')
+              label client
+              button.btn.btn-sm.btn-default(ng-click='vm.ranger.random()') RANDOM RANGER
+            .form-group.form-table
+              label message
+              div
+                input.form-control.input-sm(ng-model='vm.ranger.message', placeholder='type message.')
+            .form-group
+              label size
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='size in vm.ranger.options.sizes',
+                  ng-class='{ "btn-primary": vm.ranger.size === size }',
+                  ng-click='vm.ranger.set("size", size)')
+                  | {{ size }}
+            .form-group
+              label valign
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='valign in vm.ranger.options.valigns',
+                  ng-class='{ "btn-primary": vm.ranger.valign === valign }',
+                  ng-click='vm.ranger.set("valign", valign)')
+                  | {{ valign }}
+            .form-group
+              label flip
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='flip in vm.ranger.options.flips',
+                  ng-class='{ "btn-primary": vm.ranger.flip === flip }',
+                  ng-click='vm.ranger.set("flip", flip)')
+                  | {{ flip }}
+            .form-group
+              label disabled
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-class='{ "btn-primary": vm.ranger.disabled === "disabled" }',
+                  ng-click='vm.ranger.set("disabled", "disabled")')
+                  | disabled
+            .form-group.form-table
+              label badge
+              div
+                .dropdown
+                  button.btn.btn-sm.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true',
+                    ng-class='{ "btn-primary": vm.ranger.badge != "" }', style='width:140px;text-align:left')
+                    | {{ vm.ranger.badge }}
+                    span(ng-if='vm.ranger.badge === ""') not selected
+                    .pull-right
+                      span.caret
+                  ul.dropdown-menu.scrollable-menu
+                    li
+                      a(ng-click='vm.ranger.set("badge", "")') unselect
+                    li.divider
+                    li(ng-repeat='badge in vm.ranger.options.badges',
+                      ng-class='{ "active": vm.ranger.badge === badge }')
+                      a(ng-click='vm.ranger.set("badge", badge)')
+                        | {{ badge }}
+                div(ng-if='vm.ranger.badge', style='display:block;margin-top:10px')
+                  .dropdown
+                    button.btn.btn-sm.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true',
+                      ng-class='{ "btn-primary": vm.ranger.animation != "" }', style='width:140px;text-align:left')
+                      | {{ vm.ranger.animation }}
+                      span(ng-if='vm.ranger.animation === ""') not selected
+                      .pull-right
+                        span.caret
+                    ul.dropdown-menu.scrollable-menu
+                      li
+                        a(ng-click='vm.ranger.set("animation", "")') unselect
+                      li.divider
+                      li(ng-repeat='animation in vm.ranger.options.animations',
+                        ng-class='{ "active": vm.ranger.animation === animation }')
+                        a(ng-click='vm.ranger.set("animation", animation)')
+                          | {{ animation }}
+                  button.btn.btn-sm.btn-default(ng-class='{ "btn-primary": vm.ranger.animationInfinite === "infinite" }',
+                    ng-click='vm.ranger.set("animationInfinite", "infinite")')
+                    | infinite
+                  div(style='margin-top:10px')
+                    i.fa.fa-fw.fa-link(style='margin-right:3px')
+                    a(href='https://daneden.github.io/animate.css/', target='_blank') animate.css
+          .col-sm-6
+            h4 HTML
+            div(style='min-height:63px')
+              code
+                | &lt;ranger data-client='client'
+                span(ng-if='vm.ranger.size') &nbsp;data-size='{{ vm.ranger.size }}'
+                span(ng-if='vm.ranger.valign') &nbsp;data-valign='{{ vm.ranger.valign }}'
+                span(ng-if='vm.ranger.flip') &nbsp;data-flip='{{ vm.ranger.flip }}'
+                span(ng-if='vm.ranger.badge') &nbsp;data-badge='{{ vm.ranger.badge }}{{ vm.ranger.animation ? (':' + vm.ranger.animation + (vm.ranger.animationInfinite ? ' ' + vm.ranger.animationInfinite : '')) : '' }}'
+                span(ng-if='vm.ranger.disabled === "disabled"') &nbsp;data-disabled='{{ vm.ranger.disabled }}'
+                span(ng-if='vm.ranger.message') &nbsp;data-message='{{ vm.ranger.message }}'
+                | &gt;&lt;/ranger&gt;
+            h4 JADE
+            div(style='min-height:63px')
+              code
+                | ranger(data-client='client'
+                span(ng-if='vm.ranger.size') ,&nbsp;data-size='{{ vm.ranger.size }}'
+                span(ng-if='vm.ranger.valign') ,&nbsp;data-valign='{{ vm.ranger.valign }}'
+                span(ng-if='vm.ranger.flip') ,&nbsp;data-flip='{{ vm.ranger.flip }}'
+                span(ng-if='vm.ranger.badge') ,&nbsp;data-badge='{{ vm.ranger.badge }}{{ vm.ranger.animation ? (':' + vm.ranger.animation + (vm.ranger.animationInfinite ? ' ' + vm.ranger.animationInfinite : '')) : '' }}'
+                span(ng-if='vm.ranger.disabled === "disabled"') ,&nbsp;data-disabled='{{ vm.ranger.disabled }}'
+                span(ng-if='vm.ranger.message') ,&nbsp;data-message='{{ vm.ranger.message }}'
+                | )
+            hr     
+            div(style='text-align:center')
+              ranger(data-client='vm.ranger.client',
+                data-size='{{ vm.ranger.size }}',
+                data-valign='{{ vm.ranger.valign }}',
+                data-flip='{{ vm.ranger.flip }}',
+                data-badge="{{ vm.ranger.badge }}{{ vm.ranger.animation ? (':' + vm.ranger.animation + (vm.ranger.animationInfinite ? ' ' + vm.ranger.animationInfinite : '')) : '' }}",
+                data-disabled='{{ vm.ranger.disabled }}',
+                data-message='{{ vm.ranger.message }}',
+                style='border: 1px dashed #bbb')
+     
+    //- CARD DIRECTIVE GUIDE
+    .panel.panel-primary
+      .panel-heading
+        strong PLAYING-CARD DIRECTIVE
+      .panel-body
+        .row
+          .col-sm-6
+            //- .form-group(style='display:block')
+              label client
+              button.btn.btn-sm.btn-default(ng-click='vm.card.random()') RANDOM RANGER
+            //- .form-group.form-table
+              label message
+              div
+                input.form-control.input-sm(ng-model='vm.card.message', placeholder='type message.')
+            .form-group
+              label open
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-class='{ "btn-primary": vm.card.open === "open" }',
+                  ng-click='vm.card.set("open", "open")')
+                  | open
+            .form-group
+              label highlight
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-class='{ "btn-primary": vm.card.highlight === "highlight" }',
+                  ng-click='vm.card.set("highlight", "highlight")')
+                  | highlight
+            .form-group
+              label size
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='size in vm.card.options.sizes',
+                  ng-class='{ "btn-primary": vm.card.size === size }',
+                  ng-click='vm.card.set("size", size)')
+                  | {{ size }}
+
+            .form-group
+              label suit
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='suit in vm.card.options.suits',
+                  ng-class='{ "btn-primary": vm.card.suit === suit }',
+                  ng-click='vm.card.set("suit", suit)')
+                  | {{ suit }}
+            .form-group
+              label rank
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='rank in vm.card.options.ranks',
+                  ng-class='{ "btn-primary": vm.card.rank === rank }',
+                  ng-click='vm.card.set("rank", rank)')
+                  | {{ rank }}
+
+            .form-group
+              label number
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='frontColor in vm.card.options.frontColors',
+                  ng-class='{ "btn-primary": vm.card.frontColor === frontColor }',
+                  ng-click='vm.card.set("frontColor", frontColor)')
+                  | {{ frontColor }}
+
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='number in vm.card.options.numbers',
+                  ng-class='{ "btn-primary": vm.card.number === number }',
+                  ng-click='vm.card.set("number", number)')
+                  | {{ number }}
+
+            .form-group
+              label cover
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='cover in vm.card.options.covers',
+                  ng-class='{ "btn-primary": vm.card.cover === cover }',
+                  ng-click='vm.card.set("cover", cover)')
+                  | {{ cover }}
+
+            .form-group.form-table
+              label content HTML
+              div
+                input.form-control.input-sm(ng-model='vm.card.content', placeholder='type content html.')
+            
+
+            //- .form-group
+              label valign
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='valign in vm.card.options.valigns',
+                  ng-class='{ "btn-primary": vm.card.valign === valign }',
+                  ng-click='vm.card.set("valign", valign)')
+                  | {{ valign }}
+            //- .form-group
+              label flip
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='flip in vm.card.options.flips',
+                  ng-class='{ "btn-primary": vm.card.flip === flip }',
+                  ng-click='vm.card.set("flip", flip)')
+                  | {{ flip }}
+
+            //- .form-group.form-table
+              label badge
+              div
+                .dropdown
+                  button.btn.btn-sm.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true',
+                    ng-class='{ "btn-primary": vm.card.badge != "" }', style='width:140px;text-align:left')
+                    | {{ vm.card.badge }}
+                    span(ng-if='vm.card.badge === ""') not selected
+                    .pull-right
+                      span.caret
+                  ul.dropdown-menu.scrollable-menu
+                    li
+                      a(ng-click='vm.card.set("badge", "")') unselect
+                    li.divider
+                    li(ng-repeat='badge in vm.card.options.badges',
+                      ng-class='{ "active": vm.card.badge === badge }')
+                      a(ng-click='vm.card.set("badge", badge)')
+                        | {{ badge }}
+                div(ng-if='vm.card.badge', style='display:block;margin-top:10px')
+                  .dropdown
+                    button.btn.btn-sm.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true',
+                      ng-class='{ "btn-primary": vm.card.animation != "" }', style='width:140px;text-align:left')
+                      | {{ vm.card.animation }}
+                      span(ng-if='vm.card.animation === ""') not selected
+                      .pull-right
+                        span.caret
+                    ul.dropdown-menu.scrollable-menu
+                      li
+                        a(ng-click='vm.card.set("animation", "")') unselect
+                      li.divider
+                      li(ng-repeat='animation in vm.card.options.animations',
+                        ng-class='{ "active": vm.card.animation === animation }')
+                        a(ng-click='vm.card.set("animation", animation)')
+                          | {{ animation }}
+                  button.btn.btn-sm.btn-default(ng-class='{ "btn-primary": vm.card.animationInfinite === "infinite" }',
+                    ng-click='vm.card.set("animationInfinite", "infinite")')
+                    | infinite
+                  div(style='margin-top:10px')
+                    i.fa.fa-fw.fa-link(style='margin-right:3px')
+                    a(href='https://daneden.github.io/animate.css/', target='_blank') animate.css
+          .col-sm-6
+            h4 HTML
+            div(style='min-height:63px')
+              code
+                | &lt;playing-card
+                span(ng-if='vm.card.size') &nbsp;data-size='{{ vm.card.size }}'
+                span(ng-if='vm.card.cover') &nbsp;data-cover='{{ vm.card.cover }}'
+                span(ng-if='vm.card.suit') &nbsp;data-suit='{{ vm.card.suit }}'
+                span(ng-if='vm.card.rank') &nbsp;data-rank='{{ vm.card.rank }}'
+                span(ng-if='vm.card.frontColor') &nbsp;data-front-color='{{ vm.card.frontColor }}'
+                span(ng-if='vm.card.number') &nbsp;data-number='{{ vm.card.number }}'
+                span(ng-if='vm.card.open === "open"') &nbsp;data-open='{{ vm.card.open }}'
+                span(ng-if='vm.card.highlight === "highlight"') &nbsp;data-highlight='{{ vm.card.highlight }}'
+                span(ng-if='vm.card.badge') &nbsp;data-badge='{{ vm.card.badge }}{{ vm.card.animation ? (':' + vm.card.animation + (vm.card.animationInfinite ? ' ' + vm.card.animationInfinite : '')) : '' }}'
+                //- span(ng-if='vm.card.open === "open"') &nbsp;data-open='{{ vm.card.open }}'
+                span(ng-if='vm.card.content') &nbsp;data-content='content'
+                | &gt;&lt;playing-card&gt;
+            //- h4 JADE
+            //- div(style='min-height:63px')
+              code
+                | playing-card(
+                span(ng-if='vm.card.size') ,&nbsp;data-size='{{ vm.card.size }}'
+                span(ng-if='vm.card.suit') ,&nbsp;data-suit='{{ vm.card.suit }}'
+                span(ng-if='vm.card.rank') ,&nbsp;data-rank='{{ vm.card.rank }}'
+                span(ng-if='vm.card.badge') ,&nbsp;data-badge='{{ vm.card.badge }}{{ vm.card.animation ? (':' + vm.card.animation + (vm.card.animationInfinite ? ' ' + vm.card.animationInfinite : '')) : '' }}'
+                span(ng-if='vm.card.disabled === "disabled"') ,&nbsp;data-disabled='{{ vm.card.disabled }}'
+                span(ng-if='vm.card.message') ,&nbsp;data-message='{{ vm.card.message }}'
+                | )
+            hr     
+            div(style='text-align:center')
+              playing-card(data-client='vm.card.client',
+                data-size='{{ vm.card.size }}',
+                data-cover='{{ vm.card.cover }}',
+                data-suit='{{ vm.card.suit }}',
+                data-rank='{{ vm.card.rank }}',
+                data-front-color='{{ vm.card.frontColor }}',
+                data-number='{{ vm.card.number }}',
+                data-open='{{ vm.card.open }}',
+                data-highlight='{{ vm.card.highlight }}',
+                data-valign='{{ vm.card.valign }}',
+                data-flip='{{ vm.card.flip }}',
+                data-badge="{{ vm.card.badge }}{{ vm.card.animation ? (':' + vm.card.animation + (vm.card.animationInfinite ? ' ' + vm.card.animationInfinite : '')) : '' }}",
+                data-disabled='{{ vm.card.disabled }}',
+                data-content='vm.card.content',
+                style='border: 1px dashed #bbb')
+     
+
+            

@@ -1,0 +1,40 @@
+div(user-modal-controller='')
+  form(name='userform', ng-submit='vm.update()', novalidate='')
+    .modal-header 프로필 변경
+      .pull-right
+        a(href='', ng-click='vm.close()')
+          i.fa.fa-close
+    .modal-body 
+      .form-group(ng-class='{ "has-error" : userform.name.$invalid && !userform.name.$pristine }')
+        input.form-control(name='name', ng-model='vm.user.name', required='', ng-minlength='2')
+      //- garnet
+
+      div(style='height:200px')
+        img(ng-src='/assets/rangers/{{ vm.user.character }}', style='max-width:200px;max-height:200px;')
+      button.btn.btn-default(type='button', ng-click='vm.shuffleRanger()') 레인저 변경
+      hr
+      a(href='/#/nameplate', target='_blank') 이름표 출력
+    .modal-footer      
+      button.btn.btn-default(type='submit',
+        ng-class='{ "btn-primary": vm.snapshot !== vm.current }',
+        ng-disabled='vm.snapshot === vm.current || userform.$invalid') 수정
+    //- pre {{ vm.snapshot }}
+    //- pre {{ vm.current }}
+    //- pre {{ vm.user | json }}
+
+
+  //-   h3 {{ vm.listType }} 정렬조건
+  //-   ul.list-group
+  //-     li.list-group-item(ng-repeat='sortType in vm.sortTypes',
+  //-       ng-click='vm.selectSortType(sortType)',
+  //-       ng-class='{ active: sortType.id === vm.sortType }')
+  //-       | {{ sortType.label }}
+
+  //-   h3 {{ vm.listType }} 필터조건
+  //-   ul.list-group
+  //-     li.list-group-item(ng-repeat='filterType in vm.filterTypes',
+  //-       ng-click='vm.selectFilterType(filterType)',
+  //-       ng-class='{ active: filterType.id === vm.filterType }')
+  //-       | {{ filterType.label }}
+
+  //- style {{ vm.styles }}

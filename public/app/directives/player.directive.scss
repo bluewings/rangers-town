@@ -1,0 +1,122 @@
+.player {
+    display: inline-block;
+    position: relative;
+    width: $size-md * 1.7;
+    height: $size-md * 1.7;
+    border: 1px dashed black;
+    box-sizing: border-box;
+    > * {
+        box-sizing: border-box;
+    }
+    .ranger-wrap {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: $size-md * -0.5;
+        width: $size-md;
+        height: $size-md;
+        box-sizing: border-box;
+        background-color: rgba(0, 255, 0, 0.1);
+    }
+    .item-wrap {
+        position: absolute;
+        top: $size-md;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 0, 0, 0.1);
+        text-align: center;
+    }
+    &.player-horizontal {
+        width: $size-md * (1 + $item-size-ratio);
+        height: $size-md;
+        .ranger-wrap {
+            left: 0;
+            margin-left: 0;
+        }
+        .item-wrap {
+            left: $size-md;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    }
+    &.player-sm {
+        width: $size-sm * 1.7;
+        height: $size-sm * 1.7;
+        .ranger-wrap {
+            margin-left: $size-sm * -0.5;
+            width: $size-sm;
+            height: $size-sm;
+        }
+        .item-wrap {
+            top: $size-sm;
+        }
+        &.player-horizontal {
+            width: $size-sm * (1 + $item-size-ratio);
+            height: $size-sm;
+            .ranger-wrap {
+                left: 0;
+                margin-left: 0;
+            }
+            .item-wrap {
+                left: $size-sm;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+        }
+    }
+    &.player-lg {
+        width: $size-lg * 1.7;
+        height: $size-lg * 1.7;
+        .ranger-wrap {
+            margin-left: $size-lg * -0.5;
+            width: $size-lg;
+            height: $size-lg;
+        }
+        .item-wrap {
+            top: $size-lg;
+        }
+        &.player-horizontal {
+            width: $size-lg * (1 + $item-size-ratio);
+            height: $size-lg;
+            .ranger-wrap {
+                left: 0;
+                margin-left: 0;
+            }
+            .item-wrap {
+                left: $size-lg;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+        }
+    }
+    &.player-xl {
+        width: $size-xl * 1.7;
+        height: $size-xl * 1.7;
+        .ranger-wrap {
+            margin-left: $size-xl * -0.5;
+            width: $size-xl;
+            height: $size-xl;
+        }
+        .item-wrap {
+            top: $size-xl;
+        }
+        &.player-horizontal {
+            width: $size-xl * (1 + $item-size-ratio);
+            height: $size-xl;
+            .ranger-wrap {
+                left: 0;
+                margin-left: 0;
+            }
+            .item-wrap {
+                left: $size-xl;
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+        }
+    }
+}

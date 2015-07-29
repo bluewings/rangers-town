@@ -1,0 +1,73 @@
+div(garnet-directive='')
+  .garnet-container
+    .garnet
+      .ranger-wrap
+        //- h1 test
+        //- div(style='position:absolute;top:0;left:0;background-color:yellow;width:100%;height:5px')
+
+        img(src='/assets/rangers/{{ vm.ranger }}', height='150')
+
+      figure.left-inside
+        //- h1 inside
+      figure.left-outside
+        svg(width='200', height='200', viewBox='0 0 200 200', style='position:absolute;top:0;left:0')
+          g(transform='translate(0.5,0.5)')
+            path(d='M0,0 L200,0 L200,200 L0,200 L0,0', fill='#b6b6b6')
+            path(d='M0,0 L50,150 L50,0 L0,0', fill='#000')
+            path(d='M0,0 L50,150 L0,200 L0,0', fill='#5d5d5d')
+            path(d='M0,200 L50,150 L200,150 L200,200 L0,200', fill='#000')
+            path(d='M0,0 L200,0 L200,200 L0,200 L0,0', stroke='#aaa', fill='none')
+        //- .figure-inside
+        //- .figure-outside
+          //- svg(width='200', height='220', viewBox='0 0 200 220', style='transform:rotate(180deg)')
+            g(transform='translate(0.5,0.5)')
+              path(d='M0,0 L200,0 L200,220 L0,220 L0,0', fill='#b6b6b6')
+              path(d='M0,0 L50,170 L50,0 L0,0', fill='#000')
+              path(d='M0,0 L50,170 L0,220 L0,0', fill='#5d5d5d')
+              path(d='M0,220 L50,170 L200,170 L200,220 L0,220', fill='#000')
+              path(d='M0,0 L200,0 L200,220 L0,220 L0,0', stroke='#aaa', fill='none')
+      //- figure.left-shade
+      //- figure.left-shade-2
+      figure.right-inside
+        //- h1 inside
+      figure.right-outside
+        svg(width='200', height='200', viewBox='0 0 200 200', style='position:absolute;top:0;left:0')
+          g(transform='translate(0.5,0.5)')
+            path(d='M0,0 L200,0 L200,200 L0,200 L0,0', fill='#484848')
+            path(d='M0,150 L150,150 L200,200 L0,200 L0,150', fill='#000')
+            path(d='M200,0 L150,150 L200,200 L200,0', fill='#424242')
+            //- path(d='M200,0 L150,150 L150,50 C150,40 135,25 125,25 L25,25 C15,25 0,40 0,50 L0,0 L200,0', fill='#000')
+            path(d='M200,0 L150,150 L150,75 C150,50 112,25 75,25 C32,25 0,50 0,75 L0,0 L200,0', fill='#000')
+            path(d='M0,0 L200,0 L200,200 L0,200 L0,0', stroke='#aaa', fill='none')
+
+      figure.bottom-inside
+        //- h1 inside
+      figure.bottom-outside
+        //- h1 outside
+        svg(width='200', height='200', viewBox='0 0 200 200', style='position:absolute;top:0;left:0')
+          g(transform='translate(0.5,0.5)')
+            g
+              path(d='M0,0 L200,0 L200,200 L0,200 L0,0', fill='#fff')
+              path(d='M0,0 L50,200 L50,50 L125,50 C135,50 150,65, 150,75 L150,0 L0,0', fill='#000')
+              path(d='M0,0 L50,200 L0,200 L0,0', fill='#ebebeb')
+              path(d='M0,0 L200,0 L200,200 L0,200 L0,0', stroke='#aaa', fill='none')
+      //- figure.right-outside
+      //-   h1 outside
+      //- figure.right-outside
+      //-   h1 outside
+      //- figure.right 
+      //- figure.right-outside
+
+      //- figure.right-shade
+      //- figure.right-shade-2
+      //- figure.bottom
+      //- figure.bottom-outside
+        svg(width='200', height='200', viewBox='0 0 200 200')
+          g(transform='translate(0.5,0.5)')
+            g
+              path(d='M0,0 L200,0 L200,200 L0,200 L0,0', fill='#fff')
+              path(d='M0,0 L50,200 L50,50 L125,50 C135,50 150,65, 150,75 L150,0 L0,0', fill='#000')
+              path(d='M0,0 L50,200 L0,200 L0,0', fill='#ebebeb')
+              path(d='M0,0 L200,0 L200,200 L0,200 L0,0', stroke='#aaa', fill='none')
+      //- figure.bottom-shade
+      //- figure.bottom-shade-2

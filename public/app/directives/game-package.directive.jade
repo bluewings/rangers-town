@@ -1,0 +1,41 @@
+div(game-package-controller='')
+  div(box-3d='',
+    data-width='600',
+    data-height='600',
+    data-depth='200',
+    data-perspective='1200',
+    data-border='',
+    data-transition='all 1s ease-in-out',
+    data-rotate='40,0,-40',
+    ata-rotate='0,0,0',
+    data-scale='.7',
+    data-rotate-hover='0,0,0',
+    data-scale-hover='1')
+    .front
+      img.logo.animated(src='/assets/imgs/logo-rangers-town.png',
+        ng-class='{ jello: vm.animateLogo }')
+      .ranger-wrap(trianglify='', data-colors='Spectral')
+        .ranger(ng-repeat='ranger in vm.rangers',
+          ng-class='{ "ranger-hidden": 2 < $index && $index < 6 }')
+          img.animated(ng-src='/assets/rangers/{{ ranger.filename }}',
+            class='{{ ranger.animate }}')
+      .clearfix
+      div.bottom-area
+        img.grade(src='/assets/imgs/game-grade.png')
+        i.icon-naver-logo(style='color:#fff;border-color:#fff;')
+      .hover-only
+        div(ng-if='!vm.user')
+          a.btn.btn-lg.btn-block.btn-success(href='/auth/naver') 네이버 아이디로 로그인
+        div(ng-if='vm.user')
+          a.btn.btn-lg.btn-block.btn-primary.btn-with-image(href='', ui-sref='lounge')
+            img(ng-src='/assets/rangers/{{ vm.user.character }}')
+            | 레인저의 마을로 놀러가요.
+        strong Made by Developers
+    .back
+    .left
+    .right
+    .top
+    .bottom
+      .thumb
+        img(ng-src='/assets/rangers/{{ vm.rangers[0].filename }}')
+      

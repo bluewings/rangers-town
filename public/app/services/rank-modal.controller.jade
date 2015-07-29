@@ -1,0 +1,20 @@
+form(name='userform', ng-submit='vm.update()', novalidate='')
+  .modal-header 랭킹조회
+    .pull-right
+      a(href='', ng-click='vm.close()')
+        i.fa.fa-close
+  .modal-body
+    div.panel.panel-default
+      table.table
+        thead
+          tr
+            th RANK
+            th SCORE
+            th USER NAME
+        tbody
+          tr(ng-repeat='ranker in vm.rankers')
+            td {{ ranker.ranking }}
+            td {{ ranker.score }}
+            td.thumb-profile
+              img(ng-src='/assets/rangers/{{ ranker.character }}', style='max-width:20px')
+              | &nbsp;{{ ranker.name }}

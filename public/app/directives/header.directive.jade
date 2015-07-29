@@ -1,0 +1,99 @@
+header(header-directive='')
+
+  nav.navbar.navbar-inverse.navbar-fixed-top(ng-if='vm.user')
+    .container
+      .navbar-header  
+        a.navbar-brand(ui-sref='lounge')
+          i.fa.fa-home
+          span.sr-only lounge
+          //- Rangers Town
+
+
+      //- {{ vm.current() }}
+      span(ng-if='vm.current().game')
+        .navbar-form.navbar-left
+          button.btn.btn-default(button-leave='')
+            i.fa.fa-fw.fa-eject
+            | leave
+
+          
+          //- | go back
+          //- button.btn.btn-primary go back
+          //- button.btn.btn-success go back
+          //- button.btn.btn-warning go back
+          //- button.btn.btn-danger go back
+      ul.nav.navbar-nav.navbar-title
+        li
+          a(href='') {{ vm.roomName() }}
+      
+
+      ul.nav.navbar-nav.navbar-left(ng-if='!vm.current().game')
+        //- 관련 문서 링크
+        li
+          a(href='', ng-click='vm.openRankModal()')
+            i.fa.fa-fw.fa-trophy(style='font-size:16px')
+            | 랭킹
+        li.dropdown
+          a.dropdown-toggle(href='', data-toggle='dropdown', role='button', aria-expanded='false')
+            i.fa.fa-fw.fa-file-text-o
+            | 참고문서
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li
+              a(href='', ui-sref='sample') DIRECTIVES
+            li
+              a(href='', ui-sref='sample-layout') LAYOUT
+            li.divider
+            li
+              a(href='', ui-sref='almanac') 레인저 연감          
+
+
+
+      //- 헤더 우측
+      ul.nav.navbar-nav.navbar-right
+        //- 본인 정보
+        li.dropdown
+          a.dropdown-toggle(href='', data-toggle='dropdown', role='button', aria-expanded='false')
+            .thumb-profile
+              img(ng-src='/assets/rangers/{{ vm.user.character }}')
+            | {{ vm.user.name }}&nbsp;
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li
+              a(href='', ng-click='vm.openUserModal()') 프로필 변경
+            li.divider
+            li
+              a(href='', ng-click='vm.auth.logout()') 로그아웃
+
+        //- 친구 정보
+        li.dropdown
+          a.dropdown-toggle(href='', data-toggle='dropdown', role='button', aria-expanded='false')
+            .user-icon-wrap
+              span
+                i.glyphicon.glyphicon-user
+                i.glyphicon.glyphicon-user
+              | &nbsp;
+              span.sr-only 친구
+            span.caret
+          ul.dropdown-menu.friend-list(role='menu')
+            li(ng-repeat='f in vm.friends', stle='width:180px;margin-left:2px')
+              span.item
+                i.fa.fa-fw.fa-circle(ng-class='{ online: vm.socketStat.clientIdDict[f.friend._id] }')
+                .thumb-profile
+                  .img-wrap
+                    img(ng-src='/assets/rangers/{{ f.friend.character }}')
+                | {{ f.friend.name }}
+                .pull-right
+                  span(ng-if='vm.socketStat.clientIdDict[f.friend._id]') 접속중
+                  span(ng-if='!vm.socketStat.clientIdDict[f.friend._id]')
+                    | {{ f.friend.lastLoginTm | momentFromNow }}
+                .clearfix
+
+                  //- | {{ f.friend._id }}
+                  
+                //- img(ng-src='/assets/rangers/{{ f.friend.character }}')
+                //- | {{ f.friend.name }}님
+              //- a.text-muted.glyphicon.glyphicon-star-empty(ng-if='!f.online') {{ f.friend.name }}님/{{ f.friend.lastLoginTm | date:"MM-dd h:mma":-09:00 }}
+              //- a.text-muted.glyphicon.glyphicon-star-empty(ng-if='!f.online') {{ f.friend.name }}님/{{ f.friend.lastLoginTm | momentFromNow }}
+              //- a.text-success.glyphicon.glyphicon-star(ng-if='f.online' src='') {{ f.friend.name }}님과 함께하기
+              //- pre {{ vm.friends | json }}

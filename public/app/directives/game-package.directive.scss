@@ -1,0 +1,155 @@
+﻿[game-package-controller=''] {
+    $game-package-color-1: #B2DFA6;
+    $game-package-color-2: #97D4A4;
+    $game-package-color-3: #8CC9A8;
+    position: relative;
+    z-index: 2;
+    .box:hover {
+        .front, .back, .left, .right, .top, .bottom {
+            box-shadow: none;
+        }
+        .back, .left, .right, .top, .bottom {
+            opacity: 0;
+        }
+        .front {
+            background-color: rgba(0, 0, 0, 0);
+            .logo {
+                top: 80px;
+                right: 150px;
+            }
+            .ranger-wrap, .bottom-area {
+                opacity: 0;
+            }
+            .hover-only {
+                opacity: 1;
+            }
+        }
+    }
+    .front, .back, .left, .right, .top, .bottom {
+        position: relative;
+        display: block;
+        background-color: #fff;
+        transition: box-shadow 1s ease-in-out,  opacity 1s ease-in-out,  background-color 1s ease-in-out;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.16), 0 0 6px rgba(0, 0, 0, 0.23);
+    }
+    .back {
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 0, 0, 0.22);
+    }
+    .left {
+        background-image: linear-gradient(to right, lighten($game-package-color-1, 8%) 0, lighten($game-package-color-2, 8%) 50%, lighten($game-package-color-3, 8%) 100%);
+    }
+    .bottom {
+        background-image: linear-gradient(to right, darken($game-package-color-1, 10%) 0, darken($game-package-color-2, 10%) 50%, darken($game-package-color-3, 10%) 100%);
+        .thumb {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 140px;
+            height: 160px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            img {
+                max-width: 140px;
+                max-height: 140px;
+                margin-top: 10px;
+            }
+        }
+    }
+    .front {
+        .hover-only {
+            position: absolute;
+            width: 280px;
+            left: 160px;
+            top: 320px;
+            z-index: 3;
+            opacity: 0;
+            transition: all 1s ease-in-out;
+            .btn {
+                position: relative;
+                font-size: 16px;
+                img {
+                    position: absolute;
+                    left: 20px;
+                    bottom: 5px;
+                    width: 50px;
+                }
+                &.btn-with-image {
+                    padding-left: 60px;
+                }
+            }
+            strong {
+                display: block;
+                margin-top: 20px;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+            transition: all 1s ease-in-out;
+        }
+        .grade {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            height: 60px;
+            z-index: 2;
+        }
+        $company-logo-color: #000;
+        .icon-naver-logo {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            font-size: 24px;
+            border: 4px solid $company-logo-color;
+            color: $company-logo-color;
+            height: 38px;
+            padding: 0 15px;
+            border-radius: 19px;
+            line-height: 30px;
+        }
+        .ranger-wrap {
+            position: absolute;
+            top: 150px;
+            left: 0;
+            width: 600px;
+            z-index: 1;
+            width: 600px;
+            height: 303px;
+            border: 3px solid #fff;
+            transition: all 1s ease-in-out;
+            .ranger {
+                float: left;
+                width: 99px;
+                height: 99px;
+                overflow: hidden;
+                border: 2px solid #fff;
+                text-align: center;
+                img {
+                    max-width: 80px;
+                    max-height: 80px;
+                    margin-top: 10px;
+                }
+                &.ranger-hidden {
+                    img {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .bottom-area {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 600px;
+            height: 147px;
+            transition: all 1s ease-in-out;
+            background-image: linear-gradient(to right, $game-package-color-1 0, $game-package-color-2 50%, $game-package-color-3 100%);
+            h2 {
+                font-family: LINE Brown;
+            }
+        }
+    }
+}

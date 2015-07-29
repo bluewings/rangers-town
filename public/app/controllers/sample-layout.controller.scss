@@ -1,0 +1,55 @@
+﻿[sample-layout-controller=''] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 50px;
+    background-size: auto 100%;
+    background-position: 50% 0;
+    .container {
+        padding-top: 20px;
+        strong {
+            display: block;
+        }
+        .player {
+            label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                font-weight: bold;
+                color: #fff;
+                padding: 1px 10px 4px;
+                line-height: 100%;
+                background-color: #000;
+            }
+        }
+        .form-group {
+            display: block;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            label {
+                min-width: 80px;
+            }
+            &.form-table {
+                > * {
+                    display: table-cell;
+                    &:last-child {
+                        width: 100%;
+                        padding-left: 3px;
+                    }
+                }
+            }
+            .dropdown {
+                display: inline-block;
+                margin-right: 3px;
+            }
+            .scrollable-menu {
+                height: auto;
+                max-height: 190px;
+                overflow-x: hidden;
+            }
+        }
+    }
+}

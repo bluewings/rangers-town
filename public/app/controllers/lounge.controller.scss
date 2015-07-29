@@ -1,0 +1,239 @@
+﻿[lounge-controller=''] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 50px;
+    .container {
+        padding-top: 40px;
+    }
+    .panel-transparent {
+        background-color: rgba(255, 255, 255, 0.35);
+        border-color: rgba(231, 231, 231, 0.35);
+    }
+    .panel-card {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 8px;
+        box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.1);
+        float: left;
+        margin-right: 20px;
+        .corner-ribbon {
+            position: absolute;
+            background-image: url(/assets/imgs/brown-bg.jpg);
+            font-family: 'Open Sans', sans-serif;
+            width: 86px;
+            top: 5px;
+            left: -23px;
+            text-align: center;
+            z-index: 10;
+            line-height: 25px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: #f0f0f0;
+            transform: rotate(-45deg);
+        }
+    }
+    .panel-card {
+        &.metaphor-new-game {
+            opacity: 0.5;
+            transition: opacity 0.35s linear;
+            &:hover {
+                opacity: 1;
+            }
+            .band {
+                top: 34%;
+                font-family: 'Oleo Script', cursive;
+                font-size: 36px;
+            }
+        }
+        .panel-body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            text-align: center;
+            .title {
+                position: absolute;
+                top: 35px;
+                left: 10px;
+                right: 10px;
+                text-align: center;
+                font-family: 'Oleo Script', cursive;
+                /*font-family: 'Berkshire Swash', cursive;*/
+                /*font-family:Georgia;*/
+                font-weight: bold;
+                font-size: 28px;
+                color: #55463f;
+            }
+            .info {
+                position: absolute;
+                top: 65px;
+                right: 20px;
+                font-family: 'Oleo Script', cursive;
+                /*font-family:Georgia;*/
+                font-weight: bold;
+                font-size: 24px;
+            }
+            .backface {
+                position: absolute;
+                display: block;
+                /*background-color:#eee;*/
+                border: 1px solid #ddd;
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                border-radius: 6px;
+            }
+            .game-image {
+                position: relative;
+                max-width: 160px;
+                max-height: 160px;
+            }
+            .btn-wrap {
+                position: absolute;
+                font-family: 'Open Sans', sans-serif;
+                left: 30px;
+                right: 30px;
+                bottom: 35px;
+                width: auto;
+                &.btn-wrap-hidden {
+                    opacity: 0;
+                    transition: opacity 0.35s linear;
+                }
+            }
+            .thumbs-wrap {
+                position: absolute;
+                left: 4px;
+                right: 0;
+                /*left: 30px;
+                right: 30px;*/
+                bottom: 30px;
+                width: auto;
+                overflow: auto;
+                text-align: center;
+                white-space: nowrap;
+                pointer-events: none;
+                opacity: 1;
+                transition: opacity 0.35s linear;
+            }
+        }
+        &:hover {
+            .btn-wrap {
+                &.btn-wrap-hidden {
+                    opacity: 1;
+                }
+            }
+            .thumbs-wrap {
+                opacity: 0;
+            }
+        }
+        .band {
+            /*font-family: 'Oleo Script', cursive;*/
+            font-family: 'Jeju Gothic';
+            line-height: 100%;
+            font-size: 18px;
+            text-align: center;
+            position: absolute;
+            width: 206px;
+            top: 66%;
+            top: 73%;
+            left: 0;
+            height: 60px;
+            line-height: 60px;
+            margin-top: -30px;
+            margin-left: -4px;
+            border-radius: 4px;
+            background-image: url(/assets/imgs/brown-bg.jpg);
+            color: #fff;
+            box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.1);
+            small {
+                padding-top: 4px !important;
+            }
+            small, strong {
+                line-height: 25px;
+                height: auto;
+                width: auto;
+                padding: 0;
+                display: block;
+            }
+        }
+    }
+    .thumb-profile {
+        position: relative;
+        display: inline-block;
+        width: 21px;
+        height: 10px;
+        img {
+            position: absolute;
+            max-width: 40px;
+            max-height: 30px;
+            top: -7px;
+            right: 0px;
+        }
+    }
+    /*    .container {
+            padding-top: 20px;
+            .panel {
+                position: relative;
+                margin: 0;
+                &.panel-room {
+                    .dropdown {
+                        ul.dropdown-menu {
+                            top: auto;
+                            bottom: 100%;
+                            width: 100%;
+                        }
+                    }
+                    a.list-group-item {
+                        margin-bottom: 10px;
+                        border-top-left-radius: 4px;
+                        border-top-right-radius: 4px;
+                        border-bottom-left-radius: 4px;
+                        border-bottom-right-radius: 4px;
+                    }
+                }
+                &.panel-chat {
+                    .panel-heading {
+                        position: relative;
+                        .client-list {
+                            position: absolute;
+                            top: auto;
+                            left: 0;
+                            bottom: -40px;
+                            width: 100%;
+                            height: 40px;
+                            padding: 10px 15px;
+                            font-size: 14px;
+                            background-color: rgba(255, 255, 255, 0.75);
+                            border-bottom: 1px solid #e0e0e0;
+                            z-index:100;
+                        }
+                    }
+                    .panel-body {
+                        position: relative;
+                        padding: 0;
+                        ul {
+                            margin-top: 50px;
+                        }
+                    }
+                    .panel-footer {
+                        .form-control {
+                            border-top-left-radius: 4px;
+                            border-top-right-radius: 4px;
+                            border-bottom-left-radius: 4px;
+                            border-bottom-right-radius: 4px;
+                        }
+                        .input-group-btn {
+                            padding-left: 4px;
+                        }
+                    }
+                }
+            }
+        }*/
+}

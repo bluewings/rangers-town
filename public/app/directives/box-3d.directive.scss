@@ -1,0 +1,26 @@
+[box-3d-directive=''] {
+    .box-container {
+        position: relative;
+        display: inline-block;
+        .box {
+            width: 100%;
+            height: 100%;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            .front, .back, .left, .right, .top, .bottom {
+                box-sizing: border-box;
+                display: block;
+                position: absolute;
+            }
+            // .front {
+            //     background: hsla(0, 100%, 50%, 0.5);
+            // }
+            // .left, .back {
+            //     background: hsla(60, 100%, 50%, 0.5);
+            // }
+            // .right {
+            //     background: hsla(120, 100%, 50%, 0.5);
+            // }
+        }
+    }
+}

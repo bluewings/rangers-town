@@ -1,0 +1,12 @@
+﻿[front-controller=''] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: auto 100%;
+    background-position: 50% 0;
+    > .container {
+        padding-top: 40px;
+    }
+}

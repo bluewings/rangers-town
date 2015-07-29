@@ -1,0 +1,153 @@
+
+    $cube-width: 200px;
+    $cube-height: 220px;
+    $border-width: 0;
+    $glow-thick: 3px;
+    $glow-color: #c79a3b;
+
+@keyframes cubeSwing {
+    /*0% {
+        transform: translateZ($cube-width * -0.5) rotateX(-27deg) rotateY(45deg);
+        
+    }
+    25% {
+        transform: translateZ($cube-width * -0.5) rotateX(-27deg) rotateY(10deg);
+    }
+    50% {
+        transform: translateZ($cube-width * -0.5) rotateX(-27deg) rotateY(45deg);
+    }
+    75% {
+        transform: translateZ($cube-width * -0.5) rotateX(-27deg) rotateY(80deg);
+    }
+    100% {
+        transform: translateZ($cube-width * -0.5) rotateX(-27deg) rotateY(45deg);
+    }*/
+    0% {
+        transform: translateZ($cube-width * -0.5) rotateX(-27deg) rotateY(10deg);
+        
+    }
+    50% {
+        transform: translateZ($cube-width * -0.5) rotateX(-27deg) rotateY(80deg);
+    }
+    100% {
+        transform: translateZ($cube-width * -0.5) rotateX(-27deg) rotateY(10deg);
+    }
+}
+
+
+[cube-directive=''] {
+
+    .cube-container {
+        /*margin: 200px;*/
+        margin-top:50px;
+        margin-bottom:100px;
+        width: $cube-width;
+        height: $cube-height;
+        position: relative;
+        perspective: 20000px;
+        left:50%;
+        margin-left:$cube-width * -.5;
+        /*background-color:yellow;*/
+        img {
+            position: absolute;
+            z-index: 1000px;
+            left: 50%;
+            width: 100px;
+            margin-left: -50px;
+            bottom: 0;
+
+            animation-fill-mode: both;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 1.75s;
+            animation-name: upDown;
+        }
+        .cube {
+            animation-fill-mode: both;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 1.75s;
+            animation-duration: 15s;
+            /*animation-name: cubeSwing;*/
+            width: $cube-width;
+            height: $cube-height;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: translateZ($cube-width * -0.5) rotateX(-27deg) rotateY(45deg);
+            
+            > figure {
+                display: block;
+                position: absolute;
+                margin: 0;
+                border: $border-width solid silver;
+                box-sizing: border-box;
+                /*backside-visibility: hidden;*/
+                /*box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);*/
+                &.left {
+                    width: $cube-width;
+                    height: $cube-height;
+                    transform: rotateY(180deg) translateZ($cube-width * 0.5);
+                    background-image: url(/assets/imgs/cube-wall-left.jpg);
+                    background-repeat-y: none;
+                }
+                &.left-shade {
+                    width: $cube-width;
+                    height: $cube-height;
+                    transform: rotateY(180deg) translateZ($cube-width * 0.5 + $glow-thick);
+                    background-color: $glow-color;
+                }
+                &.left-shade-2 {
+                    width: $cube-width;
+                    height: $cube-height;
+                    transform: rotateY(180deg) translateZ($cube-width * 0.5 + $glow-thick * 2);
+                    background-color: $glow-color;
+                       box-shadow: 0px 0px 20px 4px rgba(145,145,145,0.75);
+
+                }
+                /*box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);*/
+                &.right {
+                    width: $cube-width;
+                    height: $cube-height;
+                    transform: rotateY(90deg) translateZ($cube-width * 0.5);
+                    background-image: url(/assets/imgs/cube-wall-right.jpg);
+                    background-repeat: repeat-x;
+                }
+                &.right-shade {
+                    width: $cube-width;
+                    height: $cube-height;
+                    transform: rotateY(90deg) translateZ($cube-width * 0.5 + $glow-thick);
+                    background-color: $glow-color;
+                }
+                &.right-shade-2 {
+                    width: $cube-width;
+                    height: $cube-height;
+                    transform: rotateY(90deg) translateZ($cube-width * 0.5 + $glow-thick * 2);
+                    background-color: $glow-color;
+                    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+                    box-shadow: 0px 0px 20px 4px rgba(145,145,145,0.75);
+                }
+                &.bottom {
+                    width: $cube-width;
+                    height: $cube-width;
+                    transform: rotateX(-90deg) translateZ($cube-height - $cube-width * 0.5);
+                    /*background-image:url(/assets/imgs/cube-tile.jpg);*/
+                    background-image: url(/assets/imgs/cube-tile-4.jpg);
+                }
+                &.bottom-shade {
+                    width: $cube-width;
+                    height: $cube-width;
+                    transform: rotateX(-90deg) translateZ($cube-height - $cube-width * 0.5 + $glow-thick);
+                    background-color: $glow-color;
+                }
+                &.bottom-shade-2 {
+                    width: $cube-width;
+                    height: $cube-width;
+                    transform: rotateX(-90deg) translateZ($cube-height - $cube-width * 0.5 + $glow-thick * 2);
+                    background-color: $glow-color;
+                    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+                    box-shadow: 0px 0px 20px 4px rgba(145,145,145,0.75);
+                }
+            }
+        }
+    }
+}

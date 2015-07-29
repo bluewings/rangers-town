@@ -1,0 +1,17 @@
+div(game-test-controller='')
+  .container
+    h2 title test123
+    .row
+      .col-xs-6
+        .panel.panel-default
+          .panel-heading
+            strong ME
+          .panel-body
+            pre {{ vm.me | json }}
+      .col-xs-6
+        .panel.panel-default
+          .panel-heading
+            strong DATA
+          .panel-body
+            h3 total player count : {{ vm.data.players.length }}
+            pre {{ vm.data | json }}

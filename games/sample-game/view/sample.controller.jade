@@ -1,0 +1,80 @@
+div(game-sample-controller='', style='background-image:url(/assets/stages/{{ vm.stage }})')
+  .container
+    .frame.frame-lg(class='frame-{{ vm.data.players.length }}')
+  
+      //- 내 레인저
+      //- .ranger-me
+
+      .player.player-horizontal.player-xl.player-me.player-md
+        .ranger-wrap
+          h3.score(ng-if='vm.me_.rank < 4', class='r{{ vm.me_.rank }}') {{ vm.me_.rankStr }}
+          ranger.ranger-me(data-client='vm.me', message='{{ vm.answer }}',
+            data-badge='{{ vm.me.id === vm.data.lastWinner.client.id ? "anger:rubberBand infinite" : "" }}',
+            data-size='xl')
+        .item-wrap
+          .input-group
+            .input-group-btn
+              button.btn.btn-lg.btn-default(ng-click='vm.start()', ng-disabled='vm.data.state === "game"',
+                ng-class='{ "btn-primary": vm.data.state !== "game" }') start
+            input.input-lg.form-control(ng-model='vm.answer', ng-keydown='vm.checkEnter($event)', ng-change='vm.check()')
+
+
+      //- 다른 레인저들
+      .others
+        .player.player-md(ng-repeat='player in vm.data.players',
+          ng-if='player.client.id !== vm.me.id',
+          class='player{{ player._index }}')
+          .ranger-wrap
+            h3.score(ng-if='player.rank < 4', class='r{{ player.rank }}') {{ player.rankStr }}
+            ranger(data-client='player',
+              message='{{ player.answer }}',
+              data-size='md',
+              data-badge='{{ player.client.id === vm.data.lastWinner.client.id ? "anger:rubberBand infinite" : "" }}')
+
+      .game-box
+        .col-xs-6.wrap-3d(ng-repeat='quiz in vm.data.quiz')
+          .panel.panel-default(ng-class='{ flip: !quiz.hidden }')
+            .panel-heading(style='position:relative')
+              h4
+                span(ng-if='!quiz.hidden') {{ quiz.num1 }} + {{ quiz.num2 }} = 
+                  span(ng-if='quiz.solved', style='color:#158cba') {{ quiz.num1 + quiz.num2 }}
+                | &nbsp;
+              span(ng-if='quiz.solved')
+                img(ng-src='/assets/rangers/{{ quiz.winner.client.profile.character }}',
+                  style='position:absolute;bottom:3px;right:5px', height='60px')
+        //- .item-wrap
+          //- playing-card(data-size='lg')
+          //- | {{ vm.data.myIndex }} , {{ vm.data.currentPlayerNum }}
+          .card-wrap(ng-repeat='card in vm.data.deck',
+            ng-if='card.owner === vm.me.id' ng-click='vm.throwCard(card)')
+            playing-card(data-content='card.attribute', data-open='open', data-size='lg',
+             data-highlight='{{ vm.isHighlight(card) }}')
+         
+
+           //- playing-card(data-content='card.attribute', data-open='open')
+            //- <playing-card data-suit='S' data-highlight={{vm.isHighlight(card)}} data-rank='{{card.attribute}}' data-open='open' data-size='xs' data-disabled='disabled'><playing-card>
+
+
+    //- button.btn.btn-default(button-leave='') close
+    //- form(ng-submit='vm.submit()')
+      input.form-control(ng-model='vm.message')
+    //- ul(style='background-color:#fff')
+      li(ng-repeat='message in vm.messages track by $index') {{ message }}
+    //- div(style='position:absolute;bottom:60px;left:50%;margin-left:-250px;width:500px')
+      table(width='100%')
+        tr
+          td(style='position:relative')
+            ranger(data-client='vm.me')
+            h3.score(ng-if='vm.me_.rank < 4', class='r{{ vm.me_.rank }}') {{ vm.me_.rankStr }}
+          td(style='width:99%')
+
+    //- .row
+      .col-xs-6(style='padding-top:100px')
+        .row
+          .col-xs-6(ng-repeat='player in vm.data.players',
+            ng-if='vm.me.id !== player.client.id', style='text-align:center')
+            div(style='display:inline-block;position:relative')
+              ranger(data-client='player.client', message='{{ player.answer }}')
+              h3.score(ng-if='player.rank < 4', class='r{{ player.rank }}') {{ player.rankStr }}
+      .col-xs-6(style='padding-top:80px')
+        

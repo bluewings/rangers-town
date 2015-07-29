@@ -1,0 +1,21 @@
+[figure-box-directive=''] {
+    .box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*background-color:yellow;*/
+        transform-style: preserve-3d;
+        > figure {
+            border: 1px solid silver;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /*background-color:green;*/
+            transform: translateZ(100px);
+        }
+    }
+}

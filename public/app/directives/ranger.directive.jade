@@ -1,0 +1,32 @@
+div(ranger-directive='', class='ranger-size-{{ vm.size }} ranger-valign-{{ vm.valign }} ranger-flip-{{ vm.flip }} ranger-{{ vm.disabled }}')
+  //- h3 ranger
+  
+  //- pre {{ vm.size | json }}
+
+  //- .panel.panel-default
+    .panel-body
+  .thumb-wrap
+    .thumb(style='height:{{ vm.imgHeight }}px;margin-top:{{ vm.imgHeight * -.5 }}px')
+      .badge-wrap
+        .ranger-badge
+      .img-wrap
+        .ranger-badge(ng-if='vm._badge', class='ranger-badge-{{ vm._badge }} {{ vm._badgeAnimation }}',
+          ng-class='{ "animated": vm._badgeAnimation }')
+        img.animated.upDown(ng-src='/assets/rangers/{{ vm.profile.character }}')
+
+      .popover-wrap(ng-if='vm.message',
+        ng-class='{ left: vm.flip === "flip" }',
+        style='margin-left:{{ vm.imgWidth * .5 * (vm.flip === "flip" ? -1 : 1) }}px')
+        .popover(ng-class='{ right: vm.flip !== "flip", left: vm.flip === "flip" }')
+          .arrow
+          .popover-content
+            p(style='margin:0') {{ vm.message }}
+      .profile-wrap(ng-if='vm.profile && vm.profile._id && vm.profile.name')
+        strong(ng-if='vm.profile._id === vm.socketStat.me.profile._id') {{ vm.profile.name }}
+        span(ng-if='vm.profile._id !== vm.socketStat.me.profile._id',
+          ng-click='vm.toggleFavorite()')
+          i.fa.fa-spin(ng-class='{ "fa-star": vm.cachedFriend.linkDict[vm.profile._id], "fa-star-o": !vm.cachedFriend.linkDict[vm.profile._id] }') 
+          strong {{ vm.profile.name }}
+
+
+    //- pre {{ vm.profile | json }}

@@ -1,0 +1,28 @@
+word-art {
+  font-size: 50px;
+    font-family: 'Line BROWN';
+    color: blue;
+    text-align: right;
+    color: gray;
+  .preview-wrap {
+
+
+  .handle {
+    position:absolute;
+    width: 10px;
+    height: 10px;
+    margin-left:-5px;
+    margin-top:-5px;
+    background-color:black;
+    cursor:pointer;
+z-index:1;
+border-radius:50%;
+  }
+  canvas {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:0;
+  }
+}
+}

@@ -1,0 +1,193 @@
+$garnet-width: 200px;
+$garnet-height: 200px;
+$border-width: 0;
+$glow-thick: 3px;
+$glow-color: #c79a3b;
+
+@keyframes garnetSwing {
+    /*0% {
+        transform: translateZ($garnet-width * -0.5) rotateX(-27deg) rotateY(45deg);
+        
+    }
+    25% {
+        transform: translateZ($garnet-width * -0.5) rotateX(-27deg) rotateY(10deg);
+    }
+    50% {
+        transform: translateZ($garnet-width * -0.5) rotateX(-27deg) rotateY(45deg);
+    }
+    75% {
+        transform: translateZ($garnet-width * -0.5) rotateX(-27deg) rotateY(80deg);
+    }
+    100% {
+        transform: translateZ($garnet-width * -0.5) rotateX(-27deg) rotateY(45deg);
+    }*/
+    0% {
+        transform: translateZ($garnet-width * -0.5) rotateX(-27deg) rotateY(10deg);
+    }
+    50% {
+        transform: translateZ($garnet-width * -0.5) rotateX(-27deg) rotateY(80deg);
+    }
+    100% {
+        transform: translateZ($garnet-width * -0.5) rotateX(-27deg) rotateY(10deg);
+    }
+}
+/*.box {
+        .garnet {
+             .ranger-wrap {
+                img {
+                    margin-top:-469px;
+                }
+             }
+         }
+}*/
+
+[garnet-directive=''] {
+    display: inline-block;
+    width: $garnet-width;
+    height: $garnet-height;
+    margin-right: 85px;
+    margin-bottom:43px;
+    .garnet-container {
+        /*margin: 200px;*/
+        margin-top: 50px;
+        margin-bottom: 100px;
+        width: $garnet-width;
+        height: $garnet-height;
+        position: relative;
+        perspective: 80000px;
+        left: 50%;
+        margin-left: $garnet-width * -0.5;
+        /*background-color:yellow;*/
+        .garnet {
+            animation-fill-mode: both;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 1.75s;
+            animation-duration: 15s;
+            transition: 1s all ease-in-out;
+            /*animation-name: garnetSwing;*/
+            width: $garnet-width;
+            height: $garnet-height;
+            position: absolute;
+            transform-style: preserve-3d;
+            /*transform: translateZ($garnet-width * -0.5) rotateX(-27deg) rotateY(45deg);*/
+            /*transform: translateZ($garnet-width * -0.5) rotateX(153deg) rotateY(45deg);*/
+            /*transform: translateZ($garnet-width * -0.5) rotateX(153deg) rotateY(405deg);*/
+            
+            transform: translateZ($garnet-width * -0.5) rotateX(145deg) rotateY(45deg);
+            
+            &:hover {
+                
+                transform: translateZ($garnet-width * -0.5) rotateX(333deg) rotateY(45deg);
+                /*transform: translateZ($garnet-width * -0.5) rotateX(333deg) rotateY(45deg);*/
+                .ranger-wrap {
+          /*  transform: rotateY(0deg) translateZ(-$garnet-width * 0.5);
+opacity:0;*/
+                    /*transform: rotateY(-45deg);*/
+
+                    opacity: 1;
+                }
+            }
+            .ranger-wrap {
+                
+                position: absolute;
+                display:table-cell;
+                z-index: 1000px;
+                left: 50%;
+                width: 300px;
+                margin-left: -150px;
+                text-align: center;
+                bottom: 0;
+                display: block;
+                transition: all 1s ease-in-out;
+                transform: scaleY(1.125) rotateY(-45deg) translateZ(30px);
+                opacity: 1;
+                height:150px;
+                /*height:0;*/
+
+                transform-origin: 50% 100%;
+                img {
+                    /*display:block;*/
+                    
+                    
+                    /*text-align:center;*/
+
+                }
+                /*img {
+                    position:absolute;
+                    bottom:0;
+                    left:50%;
+                }*/
+
+
+
+            }
+            > figure {
+                display: block;
+                position: absolute;
+                margin: 0;
+                border: $border-width solid silver;
+                box-sizing: border-box;
+                backside-visibility: hidden;
+                -webkit-backside-visibility: hidden;
+                /*box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);*/
+                &.left-inside {
+                    width: $garnet-width;
+                    height: $garnet-height;
+                    transform: rotateY(0deg) translateZ(-$garnet-width * 0.5);
+                    background-image: url(/assets/imgs/cube-wall-left.jpg);
+                    /*background-color: red;*/
+                    backface-visibility: hidden;
+                    box-shadow: 0px 0px 20px 5px rgba(80,80,80,0.75);
+                }
+                &.left-outside {
+                    width: $garnet-width;
+                    height: $garnet-height;
+                    transform: rotateX(180deg) translateZ($garnet-width * 0.5);
+                    background-color: blue;
+                    backface-visibility: hidden;
+                }
+                &.right-inside {
+                    width: $garnet-width;
+                    height: $garnet-height;
+                    transform: rotateY(-90deg) translateZ(-$garnet-width * 0.5);
+                    /*background-image: url(/assets/imgs/garnet-wall-right.jpg);*/
+                    background-image: url(/assets/imgs/cube-wall-right.jpg);
+                    background-repeat: repeat-x;
+                    /*background-color: green;*/
+                    backface-visibility: hidden;
+                    box-shadow: 0px 0px 50px 4px rgba(80,80,80,0.75);
+                    box-shadow: 0px 0px 20px 5px rgba(80,80,80,0.75);
+                }
+                &.right-outside {
+                    width: $garnet-width;
+                    height: $garnet-height;
+                    transform: rotateY(90deg) rotateZ(180deg) translateZ($garnet-width * 0.5);
+                    /*background-image: url(/assets/imgs/garnet-wall-right.jpg);*/
+                    background-repeat: repeat-x;
+                    background-color: yellow;
+                    backface-visibility: hidden;
+                }
+                &.bottom-inside {
+                    width: $garnet-width;
+                    height: $garnet-width;
+                    transform: rotateX(90deg) translateZ(-$garnet-width * 0.5);
+                    /*background-image:url(/assets/imgs/garnet-tile.jpg);*/
+                    /*background-image: url(/assets/imgs/garnet-tile-4.jpg);*/
+                    background-image: url(/assets/imgs/cube-tile-4.jpg);
+                    backface-visibility: hidden;
+                    /*background-color: orange;*/
+                    box-shadow: 0px 0px 50px 4px rgba(80,80,80,0.75);
+                    box-shadow: 0px 0px 20px 5px rgba(80,80,80,0.75);
+                }
+                &.bottom-outside {
+                    width: $garnet-width;
+                    height: $garnet-width;
+                    transform: rotateX(-90deg) translateZ($garnet-height - $garnet-width * 0.5);
+                    background-color: silver;
+                    backface-visibility: hidden;
+                }
+            }
+        }
+    }
+}

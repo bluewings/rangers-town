@@ -1,0 +1,14 @@
+div(almanac-ranger-controller='')
+  .container
+    .form-group
+      .pull-right
+        input.form-control(type='text', ng-model='vm.query', placeholder='search...', style='mim-width:300px')
+      .clearfix
+    .row
+      .col-xs-3(ng-repeat='ranger in vm.rangers | filter : vm.query')
+        .panel.panel-default
+          .panel-heading(style='text-transform:uppercase')
+            strong {{ $index + 1 }}. {{ ranger.nickname }}
+          .panel-body
+            p {{ ranger.filename }}
+            img(ng-src='/assets/rangers/{{ ranger.filename }}', height='100')

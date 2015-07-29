@@ -1,0 +1,230 @@
+div(sample-layout-controller='')
+  .container
+
+    //- PLAYER GUIDE
+    .panel.panel-primary
+      .panel-heading
+        strong PLAYER (RANGER + ITEM)
+      .panel-body
+        .row
+          .col-sm-6
+            .form-group
+              label ranger
+              button.btn.btn-sm.btn-default(ng-class='{ "btn-primary": vm.player.show === "show" }',
+                ng-click='vm.player.set("show", "show")')
+                | toggle
+              button.btn.btn-sm.btn-default(ng-click='vm.player.random()') RANDOM RANGER
+          .col-sm-6
+            .form-group
+              label ranger valign
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='valign in vm.player.options.valigns',
+                  ng-class='{ "btn-primary": vm.player.valign === valign }',
+                  ng-click='vm.player.set("valign", valign)')
+                  | {{ valign }}
+        
+        .row(ng-repeat='size in vm.sizes')
+          .col-sm-12
+            strong player-{{ size }}
+          .col-sm-5
+            pre.code
+              | .player.player-<span style='color:red'>{{ size }}</span>
+              |   .ranger-wrap
+              |     ranger(data-size='<span style='color:red'>{{ size }}</span>'
+              span(ng-if='vm.player.valign') ,&nbsp;data-valign='<span style='color:red'>{{ vm.player.valign }}</span>'
+              span )
+              br
+              |   .item-wrap
+              |     playing-card(data-size='<span style='color:red;background-color:yellow;'>{{ size | smallerSize }}</span>')
+          .col-sm-7
+            .player(class='player-{{ size }}')
+              .ranger-wrap
+                ranger(ng-if='vm.player.show', data-size='{{ size }}', data-client='vm.player.client', data-valign='{{ vm.player.valign }}')
+              .item-wrap
+                div(ng-if='vm.player.show')
+                  playing-card(data-size='{{ size | smallerSize }}')
+
+        .row(ng-repeat='size in vm.sizes')
+          .col-sm-12
+            strong player-horizontal , player-{{ size }}
+          .col-sm-5
+            pre.code
+              | .player.player-<span style='color:red;background-color:yellow;'>horizontal</span>.player-<span style='color:red'>{{ size }}</span>
+              |   .ranger-wrap
+              |     ranger(data-size='<span style='color:red'>{{ size }}</span>'
+              span(ng-if='vm.player.valign') ,&nbsp;data-valign='<span style='color:red'>{{ vm.player.valign }}</span>'
+              span )
+              br
+              |   .item-wrap
+              |     playing-card(data-size='<span style='color:red'>{{ size }}</span>')
+          .col-sm-7
+            .player.player-horizontal(class='player-{{ size }}')
+              .ranger-wrap
+                ranger(ng-if='vm.player.show', data-size='{{ size }}', data-client='vm.player.client', data-valign='{{ vm.player.valign }}')
+              .item-wrap
+                div(ng-if='vm.player.show')
+                  playing-card(data-size='{{ size }}')
+
+
+    //- LAYOUT GUIDE
+    .panel.panel-primary
+      .panel-heading
+        strong LAYOUT
+      .panel-body
+        .row
+          .col-sm-12
+            .form-group
+              label frame size
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='frameSize in vm.layout.options.frameSizes',
+                  ng-class='{ "btn-primary": vm.layout.frameSize === frameSize }',
+                  ng-click='vm.layout.set("frameSize", frameSize)')
+                  | {{ frameSize }}
+              .well(style='margin-left:82px;margin-top:10px;margin-bottom:0;padding:10px')
+                | sm : 740px, md : 840px, lg (default) : 940px, xl : 1040px, xxl : 1140px
+          .col-sm-12
+            .form-group
+              label players
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='num in vm.layout.options.nums',
+                  ng-class='{ "btn-primary": vm.layout.num === num }',
+                  ng-click='vm.layout.set("num", num)')
+                  | {{ num }}
+          .col-sm-4
+            .form-group
+              label my type
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='myType in vm.layout.options.myTypes',
+                  ng-class='{ "btn-primary": vm.layout.myType === myType }',
+                  ng-click='vm.layout.set("myType", myType)')
+                  | {{ myType }}
+          .col-sm-4
+            .form-group
+              label my size
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='mySize in vm.layout.options.mySizes',
+                  ng-class='{ "btn-primary": vm.layout.mySize === mySize }',
+                  ng-click='vm.layout.set("mySize", mySize)')
+                  | {{ mySize }}
+          .col-sm-4
+            .form-group
+              label my valign
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='myValign in vm.layout.options.myValigns',
+                  ng-class='{ "btn-primary": vm.layout.myValign === myValign }',
+                  ng-click='vm.layout.set("myValign", myValign)')
+                  | {{ myValign }}
+          .col-sm-4
+            .form-group
+              label others type
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='otherType in vm.layout.options.otherTypes',
+                  ng-class='{ "btn-primary": vm.layout.otherType === otherType }',
+                  ng-click='vm.layout.set("otherType", otherType)')
+                  | {{ otherType }}
+          .col-sm-4
+            .form-group
+              label others size
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='otherSize in vm.layout.options.otherSizes',
+                  ng-class='{ "btn-primary": vm.layout.otherSize === otherSize }',
+                  ng-click='vm.layout.set("otherSize", otherSize)')
+                  | {{ otherSize }}
+          .col-sm-4
+            .form-group
+              label other valign
+              .btn-group
+                button.btn.btn-sm.btn-default(ng-repeat='otherValign in vm.layout.options.otherValigns',
+                  ng-class='{ "btn-primary": vm.layout.otherValign === otherValign }',
+                  ng-click='vm.layout.set("otherValign", otherValign)')
+                  | {{ otherValign }}
+
+          .col-sm-12
+            pre.code
+              | .frame
+              span(ng-if='vm.layout.frameSize', style='background-color:yellow;color:red') .frame-{{ vm.layout.frameSize }}
+              span .frame-<span style='color:red'>{{ vm.layout.num }}</span><br>
+              span(ng-if='vm.layout.num > 4')   .player
+                span(ng-if='vm.layout.otherType === "horizontal"', style='background-color:yellow;color:red;') .player-horizontal
+                span .player<span style='color:red'>-2</span><br>
+              span(ng-if='vm.layout.num > 2')   .player
+                span(ng-if='vm.layout.otherType === "horizontal"', style='background-color:yellow;color:red;') .player-horizontal
+                span .player<span style='color:red'>-1</span><br>
+              span   .player
+                span(ng-if='vm.layout.myType === "horizontal"', style='background-color:yellow;color:red;') .player-horizontal
+                span .player<span style='color:red'>-me</span><br>
+              span(ng-if='vm.layout.num > 1')   .player
+                span(ng-if='vm.layout.otherType === "horizontal"', style='background-color:yellow;color:red;') .player-horizontal
+                span .player<span style='color:red'>1</span><br>
+              span(ng-if='vm.layout.num > 3')   .player
+                span(ng-if='vm.layout.otherType === "horizontal"', style='background-color:yellow;color:red;') .player-horizontal
+                span .player<span style='color:red'>2</span><br>
+
+            .frame(class='frame-{{ vm.layout.frameSize }} frame-{{ vm.layout.num }}')
+              span(ng-if='vm.layout.num > 1')
+                .player.player-2(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                  class='player-{{ vm.layout.otherSize }}')
+                  label player-2
+                  .ranger-wrap
+                    ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                  .item-wrap
+                    div(ng-if='vm.player.show')
+                      div(ng-if='vm.layout.otherType === "horizontal"')
+                        playing-card(data-size='{{ vm.layout.otherSize }}')
+                      div(ng-if='vm.layout.otherType !== "horizontal"')
+                        playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- player -1
+              span(ng-if='vm.layout.num > 1')
+                .player.player-1(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                  class='player-{{ vm.layout.otherSize }}')
+                  label player-1
+                  .ranger-wrap
+
+                    ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                  .item-wrap
+                    div(ng-if='vm.player.show')
+                      div(ng-if='vm.layout.otherType === "horizontal"')
+                        playing-card(data-size='{{ vm.layout.otherSize }}')
+                      div(ng-if='vm.layout.otherType !== "horizontal"')
+                        playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- player 1
+              span(ng-if='vm.layout.num > 1')
+                .player.player1(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                  class='player-{{ vm.layout.otherSize }}')
+                  label player1
+                  .ranger-wrap
+                    ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                  .item-wrap
+                    div(ng-if='vm.player.show')
+                      div(ng-if='vm.layout.otherType === "horizontal"')
+                        playing-card(data-size='{{ vm.layout.otherSize }}')
+                      div(ng-if='vm.layout.otherType !== "horizontal"')
+                        playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- player 2
+              span(ng-if='vm.layout.num > 1')
+                .player.player2(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                  class='player-{{ vm.layout.otherSize }}')
+                  label player2
+                  .ranger-wrap
+                    ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                  .item-wrap
+                    div(ng-if='vm.player.show')
+                      div(ng-if='vm.layout.otherType === "horizontal"')
+                        playing-card(data-size='{{ vm.layout.otherSize }}')
+                      div(ng-if='vm.layout.otherType !== "horizontal"')
+                        playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- me
+              .player.player-me(ng-class='{ "player-horizontal": vm.layout.myType === "horizontal" }',
+                class='player-{{ vm.layout.mySize }}')
+                label player-me
+                .ranger-wrap
+                  ranger(ng-if='vm.player.show', data-size='{{ vm.layout.mySize }}', data-client='vm.player.client', data-valign='{{ vm.layout.myValign }}')
+                .item-wrap
+                  div(ng-if='vm.player.show')
+                    div(ng-if='vm.layout.myType === "horizontal"')
+                      playing-card(data-size='{{ vm.layout.mySize }}', data-open='open', data-suit='S', data-rank='A')
+                    div(ng-if='vm.layout.myType !== "horizontal"')
+                      playing-card(data-size='{{ vm.layout.mySize | smallerSize }}', data-suit='S', data-rank='A')
+
+              
+

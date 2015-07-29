@@ -1,0 +1,102 @@
+﻿[game-sample-controller=''] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: auto 100%;
+    background-position: 50% 0;
+    padding-top: 50px;
+    .container {
+        padding-top: 20px;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: LINE Brown;
+            margin: 0;
+        }
+        .ranger-me {
+            /*        position: absolute;
+                    width: 200px;
+                    height: 200px;
+                    bottom: 40px;
+                    left: 50%;
+                    margin-left: -100px;*/
+        }
+        .input-group {
+            position: absolute;
+            top: 50%;
+            /*margin-top:-;*/
+            /*top: 170px;*/
+        }
+    }
+    .others {
+        .player {
+            transition: all 1s ease-in-out;
+        }
+    }
+    .ranger-me {
+        .score {
+            /*left: 10% !important;*/
+        }
+    }
+    .player, .frame, .ranger-wrap, .item-wrap {
+        border: none;
+        background-color: transparent;
+    }
+    .player-message {
+        display: none;
+    }
+    .ranger-wrap {
+        /*background-color: transparent;*/
+    }
+    .score {
+        background-color: #158cba;
+        padding: 5px;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        line-height: 45px;
+        color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: -10% !important;
+        z-index: 100;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        &.r1 {
+            background-color: #ff4136;
+        }
+        &.r2 {
+            background-color: #28b62c;
+        }
+    }
+    .game-box {
+        position: absolute;
+        width: 360px;
+        left: 50%;
+        margin-left: -180px;
+        top: 200px;
+        .col-xs-6 {
+            padding: 0 5px;
+            .panel {
+                margin-bottom: 10px;
+                .panel-heading {
+                    padding: 10px 15px 5px;
+                }
+                /*padding:10px;*/
+            }
+        }
+    }
+    .wrap-3d {
+        perspective: 1000px;
+        > .panel {
+            transition: transform 1s ease-in-out, opacity 1s cubic-bezier(1, 0, 0.75, 0);
+            transform: rotate3d(1, 0, 0, 180deg);
+            opacity: 0;
+            &.flip {
+                transform: rotate3d(1, 0, 0, 0deg);
+                opacity: 1;
+            }
+        }
+    }
+}

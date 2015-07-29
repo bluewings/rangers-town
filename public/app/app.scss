@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
+
+@import url(http://fonts.googleapis.com/css?family=Oleo+Script);
+
+$screen-phone: 480px;
+$screen-tablet: 768px;
+$screen-desktop: 992px;
+$screen-lg-desktop: 1200px;
+
+$screen-phone-max: $screen-tablet - 1;
+$screen-tablet-max: $screen-desktop - 1;
+$screen-desktop-max: $screen-lg-desktop - 1;
+
+$page-transition-duration: 0.75s;
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+@font-face {
+    font-family: LINE Brown;
+    src: url("/assets/fonts/LINEBrown.ttf");
+}
+
+
+@font-face {
+    font-family: jrnaver;
+    src: url("/assets/fonts/jrnaver.otf");
+}
+
+@font-face {
+  font-family: 'Jeju Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
+  src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
+}
+
+
+[ui-view] {
+    &.ng-enter, &.ng-leave {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.slide-left {
+    [ui-view] {
+        &.ng-enter {
+            transition: all $page-transition-duration ease-in-out;
+            transform: translate3d(100%, 0, 0);
+        }
+        &.ng-enter-active {
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave {
+            transition: all $page-transition-duration ease-in-out;
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave-active {
+            transform: translate3d(-100%, 0, 0);
+        }
+    }
+}
+
+.slide-right {
+    [ui-view] {
+        &.ng-enter {
+            transition: all $page-transition-duration ease-in-out;
+            transform: translate3d(-100%, 0, 0);
+        }
+        &.ng-enter-active {
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave {
+            transition: all $page-transition-duration ease-in-out;
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave-active {
+            transform: translate3d(100%, 0, 0);
+        }
+    }
+}
+
+.slide-up {
+    [ui-view] {
+        &.ng-enter {
+            transition: all $page-transition-duration ease-in-out;
+            transform: translate3d(0, 100%, 0);
+        }
+        &.ng-enter-active {
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave {
+            transition: all $page-transition-duration ease-in-out;
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave-active {
+            transform: translate3d(0, -100%, 0);
+        }
+    }
+}
+
+.slide-down {
+    [ui-view] {
+        &.ng-enter {
+            transition: all $page-transition-duration ease-in-out;
+            transform: translate3d(0, -100%, 0);
+        }
+        &.ng-enter-active {
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave {
+            transition: all $page-transition-duration ease-in-out;
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave-active {
+            transform: translate3d(0, 100%, 0);
+        }
+    }
+}
+
+// injector
+@import 'animations/hero-move.animation.scss';
+@import 'controllers/almanac-ranger.controller.scss';
+@import 'controllers/front.controller.scss';
+@import 'controllers/lounge.controller.scss';
+@import 'controllers/nameplate.controller.scss';
+@import 'controllers/profile.controller.scss';
+@import 'controllers/sample-directive.controller.scss';
+@import 'controllers/sample-layout.controller.scss';
+@import 'controllers/wrap.controller.scss';
+@import 'directives/box-3d.directive.scss';
+@import 'directives/box.directive.scss';
+@import 'directives/cube.directive.scss';
+@import 'directives/figure-box.directive.scss';
+@import 'directives/frame.directive.scss';
+@import 'directives/game-package.directive.scss';
+@import 'directives/garnet.directive.scss';
+@import 'directives/header.directive.scss';
+@import 'directives/input-message.directive.scss';
+@import 'directives/login-box.directive.scss';
+@import 'directives/papercraft.directive.scss';
+@import 'directives/player.directive.scss';
+@import 'directives/playing-card-alt.directive.scss';
+@import 'directives/playing-card.directive.scss';
+@import 'directives/prototype.directive.scss';
+@import 'directives/ranger.directive.badge.scss';
+@import 'directives/ranger.directive.scss';
+@import 'directives/screen.directive.scss';
+@import 'directives/word-art.directive.scss';
+@import 'services/game-modal.controller.scss';
+// endinjector

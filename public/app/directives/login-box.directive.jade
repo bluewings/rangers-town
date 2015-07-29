@@ -1,0 +1,12 @@
+div(login-box-directive='')
+  .panel.panel-default
+    .panel-heading 로그인
+    .panel-body
+      div(ng-if='!vm.user')
+        a.btn.btn-block.btn-success(href='/auth/naver') 네이버 아이디로 로그인
+      div(ng-if='vm.user')
+        .btn-group.btn-group-justified
+          .btn-group
+            button.btn.btn-default(ng-click='vm.auth.logout()') 로그아웃
+          .btn-group
+            a.btn.btn-default(href='', ui-sref='lounge') 들어가기

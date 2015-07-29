@@ -1,0 +1,42 @@
+div(game-sample-controller='', style='background-image:url(/assets/stages/{{ vm.stage }})')
+  .container
+    div(style='color:white;background:black;') RULE : 1부터 시작하여 숫자에 3,6,9 가 나오면 #을 입력한다 예 6 => #, 36=> #
+    form(ng-submit='vm.submit()')
+      input.form-control(ng-model='vm.message')
+    ul(style='background-color:#fff;font-size:12px;max-height:100px;overflow:auto')
+      li(ng-repeat='message in vm.messages track by $index') {{ message.name }} : {{ message.message }}
+      li#bottom(style='') &nbsp;
+    div(style='position:absolute;bottom:60px;left:50%;margin-left:-250px;width:500px')
+      table(width='100%')
+        tr
+          td(style='position:relative')
+            ranger(data-client='vm.me', data-badge='{{ vm.me_.badge }}', message='{{ vm.me_.msg }}')
+            h3.score(ng-if='vm.me_.rank < 4', class='r{{ vm.me_.rank }}') {{ vm.me_.rankStr }}
+            //h4(style='position:absolute;bottom:0;:0;color:white') {{ vm.me_.seq }}
+          td(style='width:99%')
+            .input-group
+              .input-group-btn
+                button.btn.btn-lg.btn-default(ng-click='vm.start()', ng-disabled='vm.data.state === "game"',
+                  ng-class='{ "btn-primary": vm.data.state !== "game" }') start
+              input.input-lg.form-control(ng-model='vm.answer', ng-enter='vm.check()')
+    .row
+      .col-xs-6(style='padding-top:100px')
+        .row
+          .col-xs-6(ng-repeat='player in vm.data.players',
+            ng-if='vm.me.id !== player.client.id', style='text-align:center')
+            div(style='display:inline-block;position:relative')
+              ranger(data-client='player.client', message='{{ player.msg }}' , data-badge='{{ player.badge }}' )
+              //h4(style='position:absolute;top:0px;left:0px;color:white') {{ player.seq }}
+              h3.score(ng-if='player.rank < 4', class='r{{ player.rank }}') {{ player.rankStr }}
+      .col-xs-6(style='padding-top:80px')
+        .row
+          .col-xs-6.wrap-3d(ng-repeat='quiz in vm.data.quiz')
+            .panel.panel-default(ng-class='{ flip: !quiz.hidden }')
+              .panel-heading(style='position:relative')
+                h3
+                  span(ng-if='!quiz.hidden') {{ quiz.num1 }} + {{ quiz.num2 }} = 
+                    span(ng-if='quiz.solved', style='color:#158cba') {{ quiz.num1 + quiz.num2 }}
+                  | &nbsp;
+                span(ng-if='quiz.solved')
+                  img(ng-src='/assets/rangers/{{ quiz.winner.client.profile.character }}',
+                    style='position:absolute;bottom:3px;right:5px', height='60px')

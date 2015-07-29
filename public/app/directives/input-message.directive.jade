@@ -1,0 +1,8 @@
+div(input-message-directive='')
+  form.input-group
+    input.form-control.form-inline(type='text', ng-model='vm.message', placeholder='message',
+      autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false')
+    .input-group-btn
+      button.btn.btn-default(ng-click='vm.sendMessage()',
+        ng-disabled='!vm.message')
+        i.fa.fa-fw.fa-paper-plane

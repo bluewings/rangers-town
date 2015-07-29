@@ -1,0 +1,180 @@
+div(common-prototype-directive='')
+  
+  //- .background
+  .frame
+
+    h4 player-sm
+    .player.player-sm
+      .ranger-wrap
+      .item-wrap
+
+    h4 player
+    .player
+      .ranger-wrap
+      .item-wrap
+    h4 player-lg
+    .player.player-lg
+      .ranger-wrap
+      .item-wrap
+    h4 player-xl
+    .player.player-xl
+      .ranger-wrap
+      .item-wrap
+    h4 player-horizontal & player-sm
+    .player.player-horizontal.player-sm
+      .ranger-wrap
+      .item-wrap
+    h4 player-horizontal
+    .player.player-horizontal
+      .ranger-wrap
+      .item-wrap
+    h4 player-horizontal & player-lg
+    .player.player-horizontal.player-lg
+      .ranger-wrap
+      .item-wrap
+
+    h4 player-horizontal & player-xl
+    .player.player-horizontal.player-xl
+      .ranger-wrap
+      .item-wrap
+
+    //- .container
+      .player
+        .player-body
+          //- .thmb
+            //- img.animated.upDown(src='/assets/rangers/u200e-at-32d-thum-140.png')
+
+          .ranger-wrap
+            ranger(data-client='vm.p1', data-size='md', 
+              ta-badge='sword:rubberBand infinite',
+              data-message='CAMP4') 
+          //- .thmb-wrap 
+            .thmb(style='height:{{ vm.imgHeight }}px')
+              img.animated.upDown(src='/assets/rangers/u200e-at-32d-thum-140.png')
+            //- img.animated.upDown(src='/assets/rangers/u109e-edward-thum-140.png')
+          .card-wrap
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+
+      .player
+        .player-body
+          .ranger-wrap
+            ranger(data-client='vm.p2', data-size='md', 
+              ta-badge='sword:rubberBand infinite',
+              data-flip='flip',
+              data-message='레인저스 마이티!') 
+          //- .thmb-wrap 
+          //-   .thmb
+          //-     img.animated.upDown(src='/assets/rangers/u109e-edward-thum-140.png')
+          //-   .popover-wrap
+          //-     .popover.right
+          //-       .arrow
+          //-       //- h3.popover-title Popover right
+          //-       .popover-content
+          //-         p(style='margin:0')
+                    | 레인저스 마이티!
+
+          .card-wrap
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+              
+      .player
+        .player-body 
+
+          .ranger-wrap
+            ranger(data-client='vm.p3', data-size='md', 
+              ta-badge='sword:rubberBand infinite',
+              data-flip='flip',
+              data-message='CAMP4') 
+          //- .thmb-wrap 
+            .thmb
+              img.animated.upDown(src='/assets/rangers/u092e-honey-thum-140.png')
+            //- img.animated.upDown(src='/assets/rangers/u109e-edward-thum-140.png')
+          .card-wrap
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+
+      .player
+        .player-body
+          .ranger-wrap
+            ranger(data-client='vm.p4', data-size='md', 
+              ta-badge='sword:rubberBand infinite') 
+          //- .thmb-wrap 
+            .thmb
+              img.animated.upDown(src='/assets/rangers/u123e-brown-thum-140.png')
+          .card-wrap
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+      .player.player-me
+        .player-body
+          .ranger-wrap
+            ranger(data-client='vm.me', data-size='lg', 
+              data-badge='sword:rubberBand infinite',
+              data-message='CAMP4 에 관심이 있으신 분 계신가요?') 
+          .thmb-wrap
+
+
+            //- .thmb
+              img.animated.upDown(src='/assets/rangers/u099e-alice-thum-140.png')
+            //- .popover-wrap
+              .popover.right
+                .arrow
+                //- h3.popover-title Popover right
+                .popover-content
+                  p(style='margin:0')
+                    a(href='http://yobi.navercorp.com/engineering/discuss/issue/58', target='_blank') CAMP4
+                    | &nbsp;에 관심이 있으신 분 계신가요?
+
+          .card-wrap
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+            .card
+
+
+
+          
+    //- canvas
+    //- .container
+      h3 prototype
+      button.btn.btn-default(ng-click='vm.updateBackground()')
+        | update background
+      .player(style='background-color:rgba(255,255,255,.4)')
+        .player-heading
+          | sample test
+        .player-body
+          | CONTENT HERE
+      .player
+        .player-body
+          | CONTENT HERE
+
+
+          //- div(style='transform:scale(.75);width:100px;height:100px;')
+            img.animated.upDown(src='/assets/rangers/u200e-at-32d-thum-140.png')
+      //- div(style='transform:scale(.5)')
+        img.animated.upDown(src='/assets/rangers/u109e-edward-thum-140.png')
+      //- div(style='transform:scale(.5)')
+        img.animated.upDown(src='/assets/rangers/u092e-honey-thum-140.png')

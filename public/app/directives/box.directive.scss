@@ -1,0 +1,156 @@
+.package-front {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    border: 1px solid silver;
+    display: block;
+    line-height:0;
+    .thumb {
+        position:absolute;
+        top:0;
+        left: 0;
+        width: 200px;
+        height:200px;
+        overflow:hidden;
+        img {
+                max-width:160px;
+                max-height:160px;
+                margin-top:20px;
+            }
+    }
+    .logo {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 2;
+    }
+    .grade {
+     position: absolute;
+        bottom: 30px;
+        left: 30px;
+        height: 70px;
+        z-index: 2;   
+    }
+
+}
+
+[box-directive=''] {
+    $box-width: 300px;
+    $box-height: 200px;
+    $box-depth: 100px;
+    $box-width: 600px;
+    $box-height: 600px;
+    $box-depth: 200px;
+    $box-border-width: 3px;
+    .aa {
+        position: absolute;
+        margin-left: 42px;
+        margin-top: 152px;
+    }
+    .box-container {
+        width: $box-width;
+        height: $box-height;
+        position: relative;
+        /*border: 1px solid #CCC;*/
+        perspective: 1000px;
+        .box {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: translateZ($box-depth * -0.5);
+            /*transform: translateZ($box-depth * -0.5) rotateX(52deg) rotateZ(-45deg) scale3d(0.5, 0.5, 0.5);*/
+            transform: translateZ($box-depth * -0.5) rotateX(40deg) rotateZ(-40deg) scale3d(0.67, 0.67, 0.67);
+            
+/*transform: translateZ($box-depth * -0.5) rotateX(90deg) rotateZ(0deg) scale3d(0.67, 0.67, 0.67);*/
+            
+            /*transform:translateZ($box-depth * -0.5)  rotateX(45deg) rotateZ(-45deg)  scale3d(1, 1, 1) ;*/
+            transition: all .7s ease-in-out;
+            /*transform: translateZ($box-depth * -0.5) rotateX(0) rotateY(0) scale3d(1, 1, 1);*/
+            /*transform: translateZ($box-depth * -0.5) rotateX(0) rotateY(0)  scale3d(1, 1, 1) ;*/
+            &:hover {
+                transform: translateZ($box-depth * -0.5) rotateX(0) rotateY(0) scale3d(1, 1, 1);
+                /*transform: translateZ($box-depth * -0.5) rotateX(52deg) rotateZ(-45deg)   scale3d(.5, .5, .5);*/
+            }
+            figure {
+                display: block;
+                position: absolute;
+                border: $box-border-width solid black;
+                /*line-height: $box-height;*/
+                font-size: 90px;
+                font-weight: bold;
+                color: white;
+                text-align: center;
+            }
+            .front,
+            .back {
+                width: $box-width;
+                height: $box-height;
+            }
+            .right,
+            .left {
+                width: $box-depth;
+                height: $box-height;
+                left: ($box-width - $box-depth) * 0.5;
+            }
+            .left {
+                width: $box-height;
+                height: $box-depth;
+                top: ($box-height - $box-depth) * 0.5;
+                left: 0;
+            }
+            .top,
+            .bottom {
+                width: $box-width;
+                height: $box-depth;
+                top: $box-depth * 0.5;
+                top: ($box-height - $box-depth) * 0.5;
+                line-height: $box-depth;
+            }
+            .front {
+                transform: rotateY(0deg) translateZ($box-depth * 0.5);
+            }
+            .back {
+                transform: rotateX(180deg) translateZ($box-depth * 0.5);
+            }
+            .right {
+                transform: rotateY(90deg) translateZ($box-width * 0.5);
+            }
+            .left {
+                transform: rotateY(-90deg) rotateZ(90deg) translateZ($box-height * 0.5);
+            }
+            .top {
+                transform: rotateX(90deg) translateZ($box-height * 0.5);
+            }
+            .bottom {
+                transform: rotateX(-90deg) translateZ($box-height * 0.5);
+            }
+            .front {
+                background: hsla(0, 100%, 50%, 0.5);
+                background-color: #fff;
+            }
+            .back {
+                background: hsla(60, 100%, 50%, 0.5);
+                background-color: #fff;
+            }
+            .right {
+                background: hsla(120, 100%, 50%, 0.5);
+                background-color: #fff;
+            }
+            .left {
+                background: hsla(180, 100%, 50%, 0.5);
+                background-color: rgb(146, 197, 222);
+                background-color: #fff;
+                background-color:#488D7D;
+            }
+            .top {
+                background: hsla(240, 100%, 50%, 0.5);
+                background-color: #fff;
+            }
+            .bottom {
+                background: hsla(300, 100%, 50%, 0.5);
+                background-color: #fff;
+            }
+        }
+    }
+}

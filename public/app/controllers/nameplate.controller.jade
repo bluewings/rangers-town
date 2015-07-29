@@ -1,0 +1,4 @@
+div(nameplate-controller='', rianglify='', tyle='background-image:url(/assets/stages/{{ vm.stage }})')
+  .container
+    //- button.btn.btn-default(ng-click='vm.toggleFold()') 만들
+    papercraft(data-user='vm.user', ng-class='{ fold: vm.fold }')

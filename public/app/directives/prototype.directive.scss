@@ -1,0 +1,224 @@
+
+[common-prototype-directive=''] {
+    /*.background {
+        position:fixed;
+        z-index:0;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+    }
+    */
+    .frame {
+        width: 940px;
+        height: 705px;
+        border: 1px dashed black;
+        text-align: left;
+        padding: 20px;
+    }
+    .card-wrap {
+        border: 1px dashed black;
+    }
+    .ranger-wrap {}
+    .player-me {
+        .ranger-wrap {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: $size-lg;
+            background-color: lightYellow;
+            background-color: rgba(0, 0, 0, 0.1);
+            [ranger-directive=''] {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+        }
+        .card-wrap {
+            position: absolute !important;
+            top: 0 !important;
+            left: $size-lg !important;
+            right: 0 !important;
+            bottom: 0 !important;
+        }
+    }
+    [ranger-directive=''] {
+        border: 1px dashed black;
+        /*display:none;*/
+        .thumb-wrap {
+            opacity: 0;
+            /*display:none;*/
+        }
+    }
+    $pad-unit: 15px;
+    $pad-top: 40px;
+    $container-width: 760px;
+    $box-width: $size-lg;
+    $box-width: 180px;
+    $box-height: 180px;
+    $box-width: 200px;
+    $box-height: 200px;
+    $my-box-width: $box-width * 2.5;
+    $my-box-width: $container-width - $box-width - $pad-unit * 2;
+    $my-box-height: $box-height * 1;
+    $gap: ($container-width / 4 - $box-width) / 2;
+    .container {
+        /*border:2px solid silver;*/
+        /*margin-top: 100px;*/
+        position: relative;
+        width: $container-width + $pad-unit * 2;
+        width: 940px;
+        height: 600px;
+        height: 705px;
+        /*background-color: silver;*/
+        .pop-over-wrap {
+            position: absolute;
+            /*right:-$size-lg;*/
+            top: -75px;
+            right: 0;
+            width: 0;
+            height: 0;
+            .pop-over {
+                width: $size-lg;
+                display: block;
+            }
+        }
+        .card-wrap {
+            position: absolute;
+            /*background-color:yellow;*/
+            height: $box-height - $box-width * 0.8 + 25;
+            /*margin-top: -25px;*/
+            /*margin-top: -25px;*/
+            top: 112px;
+            /*margin-left: -30px;*/
+            left: 0;
+            right: 0;
+            height: 100px;
+            height: 88px;
+            /*padding-top:-10px;*/
+            /*width:;*/
+            padding: 10px;
+            text-align: center;
+            /*transform:scale(.5);*/
+            .card {
+                /*position:absolute;*/
+                /*bottom:0;*/
+                /*transform:;*/
+                width: 90px;
+                height: 120px;
+                background-color: #fff;
+                display: inline-block;
+                border: 1px solid silver;
+                margin-right: -75px;
+                transform-origin: 0 0;
+                transform: rotate(10deg) scale(0.5);
+                /*display:none;*/
+                border-radius: 5px;
+                /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);*/
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13), 0 3px 6px rgba(0, 0, 0, 0.2);
+                /*box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);*/
+            }
+        }
+        .player {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(223, 223, 223, 0.25);
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            margin-bottom: 0;
+            /*border-top-left-radius:$box-width / 2;
+            border-top-right-radius:$box-width / 2;*/
+            /*border-radius: 20px;*/
+            border: 1px dashed black;
+            .player-body {
+                width: $box-width;
+                height: $box-height;
+                padding: 0;
+                .thmb-wrap {
+                    position: relative;
+                    width: $box-width;
+                    height: $box-width * 0.8;
+                    /*background-color: silver;*/
+                    text-align: center;
+                    .thmb {
+                        position: absolute;
+                        margin-left: auto;
+                        margin-right: auto;
+                        bottom: 20px;
+                        transform-origin: 0 100%;
+                        transform: scale(0.67);
+                        /*background-color:yellow;*/
+                        width: 250px;
+                        text-align: center;
+                        left: 50%;
+                        margin-left: -125px * 0.67;
+                        img {
+                            /*display: none;*/
+                        }
+                        /*margin-left:-125px;*/
+                        /*margin: 10px;
+                        width: 100px;
+                        height: 100px;
+                        background-color: rgba(255, 255, 255, 0.25);*/
+                    }
+                }
+            }
+            &:nth-child(1) {
+                position: absolute;
+                top: $pad-top;
+                left: $container-width * 0.25 + $pad-unit + $gap;
+            }
+            &:nth-child(2) {
+                position: absolute;
+                top: $pad-top;
+                /*right: $pad-unit * 4.5;
+                /*right:25%;*/
+                left: $container-width * 0.5 + $pad-unit + $gap;
+            }
+            &:nth-child(3) {
+                position: absolute;
+                top: $pad-top * 3;
+                /*right: $pad-unit;*/
+                left: $container-width * 0.75 + $pad-unit + $gap;
+                /*margin-top: $box-height * -0.75;*/
+            }
+            &:nth-child(4) {
+                position: absolute;
+                top: $pad-top * 3;
+                left: $pad-unit + $gap;
+                /*margin-top: $box-height * -0.75;*/
+            }
+            &:nth-child(5) {
+                position: absolute;
+                left: 50%;
+                bottom: $pad-top;
+                margin-left: $my-box-width * -0.5;
+                .player-body {
+                    width: $my-box-width;
+                    height: $my-box-height;
+                    .thmb-wrap {
+                        position: absolute;
+                        bottom: 0;
+                    }
+                    .card-wrap {
+                        position: absolute;
+                        /*background-color:yellow;*/
+                        top: 0;
+                        left: $box-width;
+                        margin-top: 15px;
+                        width: $my-box-width - $box-width;
+                        height: $my-box-height - 15;
+                        .card {
+                            margin-right: -50px;
+                            transform: rotate(10deg) scale(1);
+                        }
+                    }
+                }
+                /*left: $pad-unit;*/
+                /*margin-top: $box-height * -0.75;*/
+            }
+        }
+    }
+}

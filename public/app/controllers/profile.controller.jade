@@ -1,0 +1,56 @@
+div(profile-controller='', rianglify='', tyle='background-image:url(/assets/stages/{{ vm.stage }})')
+  .container
+    //- iframe(width='0', height='0', frameborder='0', allowfullscreen='', src='https://www.youtube.com/embed/L85V0SKrKiQ?rel=0&controls=0&autoplay=1')
+    
+    //- img(ng-repeat='img in vm.images track by $index', ng-src='/assets/cards/256/{{ img }}', width='50', ng-click='vm.addImage(img)')
+    playing-card(data-size='xl', data-open='open')
+    playing-card(data-size='lg', data-open='open')
+    playing-card(data-size='md', data-open='open')
+    playing-card(data-size='sm', data-open='open')
+    playing-card(data-size='xs', data-open='open')
+
+    hr
+    playing-card(data-size='xl', data-cover='black', ata-open='open')
+    playing-card(data-size='lg', ata-open='open')
+    playing-card(data-size='md', ata-open='open')
+    playing-card(data-size='sm', ata-open='open')
+    playing-card(data-size='xs', ata-open='open')
+
+    canvas(style='background-color:yellow')
+    hr
+
+
+    img(ng-repeat='img in vm.newImages track by $index', ng-src='/assets/cards/256/{{ img }}',  ng-click='vm.removeImage(img)')
+
+    pre {{ vm.newImages | json }}
+        
+
+
+    //- h1 프로파일
+    //- .row
+      .col-sm-6
+        .well
+          h4 score
+          input.form-control(ng-model='vm.user.score', type='number')
+          h4 ruby
+          input.form-control(ng-model='vm.user.ruby', type='number')
+          h4 character
+          select.form-control(ng-model='vm.user.character', ng-options='ranger for ranger in vm.rangers')
+          //- input.form-control(ng-model='vm.user.character', type='text')
+          img(ng-src='/assets/rangers/{{ vm.user.character }}', height='150')
+          h4 name
+          input.form-control(ng-model='vm.user.name', type='text')
+        button.btn.btn-default(ng-click='vm.update()')
+          | UPDATE
+        p 캐릭터 변경 기능, 이름 (변경기능)
+        p 친구 추가 기능
+      .col-sm-6
+        pre {{ vm.user | json }}
+    
+    a.btn.btn-default(href='', ui-sref='lounge') 라운지
+    
+    //- .row
+      .col-sm-4
+      .col-sm-4(style='text-align:center')
+        cube
+        login-box(data-user='vm.user', data-character='vm.ranger')

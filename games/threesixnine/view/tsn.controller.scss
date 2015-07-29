@@ -1,0 +1,54 @@
+﻿[game-tsn-controller=''] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: auto 100%;
+    background-position: 50% 0;
+    .container {
+        padding-top: 20px;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: LINE Brown;
+            margin: 0;
+        }
+    }
+    .score {
+        background-color: #158cba;
+        padding: 5px;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        line-height: 45px;
+        color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 10%;
+        z-index: 100;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        &.r1 {
+            background-color:#ff4136;
+        }
+        &.r2 {
+            background-color:#28b62c;
+        }
+    }
+    .wrap-3d {
+        perspective: 1000px;
+        > .panel {
+            transition: transform 1s ease-in-out, opacity 1s cubic-bezier(1,0,.75,0);
+            transform: rotate3d(1, 0, 0, 180deg);
+            opacity: 0;
+            &.flip {
+
+                transform: rotate3d(1, 0, 0, 0deg);
+                opacity: 1;
+            }
+        }
+    }
+    .character-text {
+
+    }
+}

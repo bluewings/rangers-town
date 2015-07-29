@@ -1,0 +1,163 @@
+div(lounge-controller='', trianglify='', data-colors='Spectral')
+  .container(tyle='background-color:lightyellow')
+    //- pre {{ vm.socketStat.rooms | json }}
+    
+    //- pre {{ vm.socketStat.clientIdDict | json }}
+    //- br
+    //- br
+    //- br
+    //- div(ng-repeat='(key, client) in vm.socketStat.clients')
+      ranger(data-client='client')
+      br
+      br
+
+    .row
+      .col-sm-8(role='main')
+      
+        .panel.panel-default.panel-transparent
+          .panel-body(style='padding:30px 15px 15px 30px')
+
+            span
+              //- 새 게임 생
+              .panel.panel-default.panel-card.metaphor-new-game(n-if='room.roomId === "welcome"')
+                .panel-body
+                  .backface
+                  .btn-wrap
+                    button.btn.btn-block.btn-md.btn-primary(ng-click='vm.newGame()')
+                      i.fa.fa-magic(style='margin-right:8px')
+                      | NEW GAME
+                .band New Game
+
+
+              //- a.list-group-item(ng-repeat='(id, room) in vm.socketStat.rooms',
+                ng-if='room.name !== "lobby"',
+                ui-sref='{{ room.gameId }}-game({ roomId: room.id })')
+                | {{ room.name }} 
+                .badge {{ room.clientCount }}
+
+
+            span(ng-repeat='(id, room) in vm.socketStat.rooms',
+              ng-if='room.name !== "lobby"')
+              .panel.panel-default.panel-card
+                .panel-body
+                  .backface
+                  .corner-ribbon.top-right
+                    span(ng-if='!room.option.numOfPlayers') {{ room.clientCount }}
+                    span(ng-if='room.option.numOfPlayers') {{ room.clientCount }}/{{ room.option.numOfPlayers }}
+                  //- .title {{ room.name }}
+                  //- img(ng-src=''
+                  //- pre {{ room | json }}
+                  img.game-image(ng-src='{{ room.gameImage }}')
+                  //- .btn-wrap.btn-wrap-hidden
+                    button.btn.btn-block.btn-md.btn-primary(ng-click='enterRoom(room)',
+                      ng-disabled='room.option.numOfPlayers && room.option.numOfPlayers <= room.clientCount')
+                      i.fa.fa-sign-in(style='margin-right:8px')
+                      | ENTER
+                a.band(ui-sref='{{ room.gameId }}-game({ roomId: room.id })')
+                  small {{ room.gameName }}
+                  strong {{ room.name }}
+              
+              //- .col-md-4.masonry-brick(ng-if='room.roomId !== "welcome"',
+                ng-repeat='room in socketStatus.rooms track by room.roomId')
+
+              //- .panel.panel-default.panel-card
+                .panel-body
+
+                  .backface
+                  .corner-ribbon.top-right 1/5
+                  .title Seoul
+                  //- .info 1/5
+                  
+                  .btn-wrap
+                    button.btn.btn-block.btn-md.btn-primary
+                      i.fa.fa-sign-in(style='margin-right:8px')
+                      | ENTER
+                .band Mighty
+
+      .col-sm-4
+        .panel.panel-default.panel-transparent
+          .panel-body
+            | CONTENT
+
+        //- .col-xs-3
+        //- .panel.panel-default.panel-room(style='height:{{ clientHeight - 40 }}px')
+          .panel-heading 방 목록
+          .panel-body
+            h5 로비
+            .list-group
+              li.list-group-item(ng-repeat='(id, room) in vm.socketStat.rooms',
+                ng-if='room.name === "lobby"') {{ room.name }} 
+                .badge {{ room.clientCount }}
+            hr
+            h5 방
+            .list-group
+              a.list-group-item(ng-repeat='(id, room) in vm.socketStat.rooms',
+                ng-if='room.name !== "lobby"',
+                ui-sref='{{ room.gameId }}-game({ roomId: room.id })')
+                | {{ room.name }} 
+                .badge {{ room.clientCount }}
+          .panel-footer(style='position:absolute;bottom:0;left:0;right:0;')
+            button.btn.btn-block.btn-success(type='button', ng-click='vm.newGame()')
+              strong CREATE A NEW GAME 
+            //- .dropdown
+              button.btn.btn-block.btn-primary.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='false')
+                strong CREATE A NEW GAME 
+                span.caret
+              ul.dropdown-menu(role='menu')
+                li(ng-repeat='game in vm.games', ng-click='vm.createRoom(game)')
+                  a(href='') {{ game.name }}
+      .col-sm-4
+
+        
+        .panel.panel-default.panel-online(style='height:{{ vm.socketStat.clients.length * 14 }}px')
+          .panel-heading 게임에 참여 중인 레인저스
+          .online-user
+            li(ng-repeat='client in vm.socketStat.clients'
+              , ng-if='client.room !== vm.socketStat.me.room')
+              //- span {{ client.room }} , {{ vm.getRoom(client.room).gameId }}
+              a(ui-sref='{{ vm.getRoom(client.room).gameId }}-game({ roomId: client.room })')
+                .thumb-profile
+                  img(ng-src='/assets/rangers/{{ client.profile.character }}') 
+                {{ client.profile.name }}님이 '{{ (vm.getRoom(client.room)).name }}' 게임 참여 중
+              //-a(ui-sref='{{vm.getGameId(client.room)}}-game({ roomId: client.room })') {{ client.profile.name }} 님 위치 {{ vm.getRoomName(client.room) }}
+            //-li {{ vm.socketStat.me.room | json }}
+
+        .panel.panel-default.panel-chat(style='height:{{ clientHeight - 450 }}px')
+          .panel-heading 로비에서 대화에 참여 중인 레인저스
+            .client-list
+              span(ng-repeat='client in vm.socketStat.room.clients')
+                .thumb-profile
+                  img(ng-src='/assets/rangers/{{ client.profile.character }}')
+                | {{ client.profile.name }}&nbsp;
+              //-span {{ vm.socketStat | json }}          
+          .panel-body.messages(style='height:{{ clientHeight - 534 }}px;overflow-y:auto')
+            //- h4 RANGERS TOWN
+ 
+            ul
+              li(ng-repeat='message in vm.messages track by $index') {{ message.name }} : {{ message.message }}
+
+          .panel-footer(style='position:absolute;bottom:0;left:0;right:0')
+            form.input-group
+              input.form-control.form-inline(type='text', ng-model='vm.message', placeholder='message',
+                autocomplete='off', autocorrect='off', autocapitalize='off', spellcheck='false')
+              .input-group-btn
+                button.btn.btn-default(ng-click='vm.sendMessage()')
+
+                  i.fa.fa-fw.fa-paper-plane
+
+
+      .col-xs-3
+        //- .panel.panel-default.panel-room(style='height:{{ clientHeight - 40 }}px')
+          .panel-heading 친구 목록
+          .panel-body
+            div(ng-repeat='friendLink in vm.friendLinks')
+              ranger(data-client='friendLink.friend', data-size='sm')
+    //- hr
+    //- .pull-right
+      img.hero(hero='', hero-id='ranger', src='/assets/rangers/u029e-renee-thum-140.png')
+
+    //- h1 prev : {{ prevState }}
+    //- h1 curr : {{ vm.state.name }} , {{ currState }}
+    //- h1 next : {{ nextState }}
+    //- hr
+    //- h1 {{ vm.state.name }} from-view-{{ fromState }} to-view-{{ toState }}
