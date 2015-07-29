@@ -1,7 +1,7 @@
 ﻿$card-width: 114px;
 $card-height: 154px;
-$transition-duration: 1s;
-
+$transition-duration: .5s;
+$perspective: 800px;
 
 playing-card {
     display: inline-block;
@@ -207,7 +207,7 @@ playing-card {
 }
 
 [playing-card-directive=''] {
-    perspective: 200;
+    perspective: $perspective;
     display: inline-block;
     border: none !important;
     &.playing-card-highlight {

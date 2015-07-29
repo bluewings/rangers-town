@@ -1,0 +1,34 @@
+div(game-mighty-controller='', tyle='background-image:url(/assets/stages/{{ vm.stage }})')
+  .container
+    button.btn.btn-default(ng-click='vm.addP()') add p
+    button.btn.btn-default(ng-click='vm.removeP()') remove p
+
+    .frame.frame-lg(class='frame-{{ vm.data.players.length }}')
+  
+      //- .ranger-me
+
+      .player.player-horizontal.player-xl.player-me.player-md
+        .ranger-wrap
+
+          //- h3.score(ng-if='vm.me_.rank < 4', class='r{{ vm.me_.rank }}') {{ vm.me_.rankStr }}
+          ranger.ranger-me(data-client='vm.me', message='{{ vm.answer }}',
+            data-badge='{{ vm.me.id === vm.data.lastWinner.client.id ? "anger:rubberBand infinite" : "" }}',
+            data-size='xl')
+        .item-wrap
+          
+
+      //- 다른 레인저들
+      .others
+        .player.player-md.animated.lightSpeedIn(ng-repeat='player in vm.data.players track by player.client.id',
+          ng-if='player.client.id !== vm.me.id',
+          class='player{{ player._index }}')
+          .ranger-wrap
+            h3 {{ player._index }}
+            //- h3.score(ng-if='player.rank < 4', class='r{{ player.rank }}') {{ player.rankStr }}
+            ranger(data-client='player',
+              message='{{ player.answer }}',
+              data-size='md',
+              data-badge='{{ player.client.id === vm.data.lastWinner.client.id ? "anger:rubberBand infinite" : "" }}')
+
+
+    pre {{ vm.data.players | json }}
