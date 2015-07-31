@@ -37,9 +37,13 @@ $size-xl: 200px;
             .player1 {
                 top: $frame-padding;
                 left: $frame-padding + $player-width * 0.5;
+                background-color:yellow;
             }
             .player2 {
-                display: none;
+                // display: none;
+                background-color:yellow;
+                                top: $frame-padding;
+                left: $frame-padding + $player-width * 0.5 + $gap;
             }
             .player-2 {
                 display: none;
@@ -547,7 +551,9 @@ $size-xl: 200px;
                 left: $frame-padding + $player-width * 0.5;
             }
             .player2 {
-                display: none;
+                // display: none;
+                                top: $frame-padding;
+                left: $frame-padding + $player-width * 0.5 + $gap;
             }
             .player-2 {
                 display: none;
@@ -2073,7 +2079,9 @@ $size-xl: 200px;
             left: $frame-padding + $player-width * 0.5;
         }
         .player2 {
-            display: none;
+            // display: none;
+                    top: $frame-padding;
+            left: $frame-padding + $player-width * 0.5 + $gap;
         }
         .player-2 {
             display: none;
@@ -2230,7 +2238,9 @@ $size-xl: 200px;
             left: $frame-padding + $player-width * 0.5 + $gap;
         }
         .player-2 {
-            display: none;
+            // display: none;
+                        top: $frame-padding;
+            left: $frame-padding + $player-width * 0.5 + $gap * 2;
         }
         .player-1 {
             top: $frame-padding * 3;

@@ -28,6 +28,25 @@ class App.Mighty
       my.removeP()
       return
 
+    @socket.on 'kick', (sender, player) ->
+      # my.removeP()
+      # player = my.findPlayer(player.client)
+      # console.log player
+
+      index = -1
+      for each, i in my.players
+        if each.client.id is player.client.id
+          index = i
+          break
+
+      if index > -1
+        my.players.splice(index, 1)
+        # my = @
+        # my.players.pop()
+        my.syncdata()
+
+      return
+
     # 최초로 들어와서 데이터 sync 요청
     @socket.on 'request-sync', (sender) ->
       my.syncdata(sender)
@@ -208,6 +227,7 @@ class App.Mighty
 
 class App.Player
   constructor: (@client) ->
+    @_id = Math.floor(Math.random() * 100000)
     @reset()
 
   reset: ->

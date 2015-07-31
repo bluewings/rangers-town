@@ -28,6 +28,11 @@ angular.module 'rangers'
     quiz: []
     state: ''
 
+  vm.kick = (player) ->
+    socket.emit 'kick', player
+    # vm.answer = ''
+    return
+
   vm.checkEnter = (event) ->
     if event.keyCode is 13
       socket.emit 'answer', vm.answer
@@ -60,7 +65,10 @@ angular.module 'rangers'
   # console.log 'asaa'
 
   socket.on 'sync', (data) ->
-    util.arrayMerge vm.data.players, data.players, 'client.id', true
+    # util.arrayMerge vm.data.players, data.players, 'client.id', true
+    util.arrayMerge vm.data.players, data.players, '_id', true
+
+    console.log data.players.length
     util.arrayMerge vm.data.quiz, data.quiz, 'uniq', true
     console.log data
     vm.data.lastWinner = data.lastWinner

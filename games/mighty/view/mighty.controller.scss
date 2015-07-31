@@ -13,16 +13,24 @@
 
      .others {
         .player   {
-            transition:top 1.75s cubic-bezier(.5, 0, 0.25, 1.5)
-            , left 1.75s cubic-bezier(.5, 0, 0.25, 1.5)
-            , right 1.75s cubic-bezier(.5, 0, 0.25, 1.5)
-            , bottom 1.75s cubic-bezier(.5, 0, 0.25, 1.5);
-            &.ng-leave {
-                transition-duration:.1s;
-            }
+            // transition:top 1.75s cubic-bezier(.5, 0, 0.25, 1.5)
+            // , left 1.75s cubic-bezier(.5, 0, 0.25, 1.5)
+            // , right 1.75s cubic-bezier(.5, 0, 0.25, 1.5)
+            // , bottom 1.75s cubic-bezier(.5, 0, 0.25, 1.5);
+            // &.ng-leave {
+            //     transition-duration:.1s;
+            // }
         }
      }
         
+    }
+    .player {
+        position: absolute !important;
+        transition: all 1s linear !important;
+    }
+
+    .player0 {
+        display:none;
     }
 
 

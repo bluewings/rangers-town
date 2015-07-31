@@ -19,16 +19,16 @@ div(game-mighty-controller='', tyle='background-image:url(/assets/stages/{{ vm.s
 
       //- 다른 레인저들
       .others
-        .player.player-md.animated.lightSpeedIn(ng-repeat='player in vm.data.players track by player.client.id',
-          ng-if='player.client.id !== vm.me.id',
+        .player.player-md.animated.lightSpeedIn(ng-repeat='player in vm.data.players track by player._id | orderBy : _index',
+          g-if='player.client.id !== vm.me.id',
           class='player{{ player._index }}')
           .ranger-wrap
             h3 {{ player._index }}
             //- h3.score(ng-if='player.rank < 4', class='r{{ player.rank }}') {{ player.rankStr }}
             ranger(data-client='player',
               message='{{ player.answer }}',
-              data-size='md',
-              data-badge='{{ player.client.id === vm.data.lastWinner.client.id ? "anger:rubberBand infinite" : "" }}')
+              ng-click='vm.kick(player)',
+              data-size='md')
 
 
     pre {{ vm.data.players | json }}
