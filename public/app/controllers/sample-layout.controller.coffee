@@ -22,6 +22,7 @@ angular.module 'rangers'
 
     client: user
     num: 5
+    frameSize: 'lg'
     mySize: 'xl'
     myType: 'horizontal'
     myValign: 'middle'
@@ -29,7 +30,7 @@ angular.module 'rangers'
     otherType: ''
     otherValign: ''
     options:
-      nums: [2, 3, 4, 5]
+      nums: [2, 3, 4, 5, 6]
       # 750px 970px 1170px
       # 710px 940px 1130px
       # 부트 스트랩 기존으로 쪼개면 단계간의 차이가 너무 커서 940을 기준으로 100px 단위로 변경
