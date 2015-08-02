@@ -1,165 +1,131 @@
 @charset "utf-8";
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
+$frame-sizes: (sm: (frame-width: 740px, frame-height: 705px, frame-padding: 40px), md: (frame-width: 840px, frame-height: 705px, frame-padding: 40px), lg: (frame-width: 940px, frame-height: 705px, frame-padding: 40px), xl: (frame-width: 1040px, frame-height: 705px, frame-padding: 40px), xxl: (frame-width: 1140px, frame-height: 705px, frame-padding: 40px));
 
-@import url(http://fonts.googleapis.com/css?family=Oleo+Script);
+$player-sizes: (sm: (width: 84px), md: (width: 112px), lg: (width: 150px), xl: (width: 200px));
 
-$screen-phone: 480px;
-$screen-tablet: 768px;
-$screen-desktop: 992px;
-$screen-lg-desktop: 1200px;
+$player-indexes: 1 2 -2 -1;
 
-$screen-phone-max: $screen-tablet - 1;
-$screen-tablet-max: $screen-desktop - 1;
-$screen-desktop-max: $screen-lg-desktop - 1;
-
-$page-transition-duration: 0.75s;
-
-html {
-    height: 100%;
+@function player-position($frame-prop, $player-prop, $num-of-player, $player-index) {
+    $top: 0;
+    $left: 0;
+    $opacity: 1;
+    $frame-width: map-get($frame-prop, frame-width);
+    $frame-height: map-get($frame-prop, frame-height);
+    $frame-padding: map-get($frame-prop, frame-padding);
+    $player-width: map-get($player-prop, width);
+    @if $num-of-player <= 5 {
+        $n: 4;
+        $margin: ($frame-width - $frame-padding * 2 - $player-width * $n) / ($n - 1);
+        $gap: $player-width + $margin;
+        @if $player-index == 1 {
+            $top: $frame-padding * 3;
+            $left: $frame-padding + $player-width * 0.5;
+        }
+        @else if $player-index == 2 {
+            $top: $frame-padding;
+            $left: $frame-padding + $player-width * 0.5 + $gap;
+        }
+        @else if $player-index == -2 {
+            $top: $frame-padding;
+            $left: $frame-padding + $player-width * 0.5 + $gap * 2;
+        }
+        @else if $player-index == -1 {
+            $top: $frame-padding * 3;
+            $left: $frame-padding + $player-width * 0.5 + $gap * 3;
+        }
+    }
+    @if $num-of-player <= 4 {
+        $n: 3;
+        $margin: ($frame-width - $frame-padding * 2 - $player-width * $n) / ($n - 1);
+        $gap: $player-width + $margin;
+        @if $player-index == 1 {
+            $top: $frame-padding * 3;
+            $left: $frame-padding + $player-width * 0.5;
+        }
+        @else if $player-index == 2 {
+            $top: $frame-padding;
+            $left: $frame-padding + $player-width * 0.5 + $gap;
+        }
+        @else if $player-index == -2 {
+            $opacity: 0;
+        }
+        @else if $player-index == -1 {
+            $top: $frame-padding * 3;
+            $left: $frame-padding + $player-width * 0.5 + $gap * 2;
+        }
+    }
+    @if $num-of-player <= 3 {
+        $n: 2;
+        $margin: ($frame-width - $frame-padding * 2 - $player-width * $n) / ($n - 1);
+        $gap: $player-width + $margin;
+        @if $player-index == 1 {
+            $top: $frame-padding;
+            $left: $frame-padding + $player-width * 0.5;
+        }
+        @else if $player-index == 2 {
+            $opacity: 0;
+        }
+        @else if $player-index == -2 {
+            $opacity: 0;
+        }
+        @else if $player-index == -1 {
+            $top: $frame-padding;
+            $left: $frame-padding + $player-width * 0.5 + $gap;
+        }
+    }
+    @if $num-of-player <= 2 {
+        @if $player-index == 1 {
+            $top: $frame-padding;
+            $left: 50%;
+        }
+        @else if $player-index == 2 {
+            $opacity: 0;
+        }
+        @else if $player-index == -2 {
+            $opacity: 0;
+        }
+        @else if $player-index == -1 {
+            $opacity: 0;
+        }
+    }
+    @return (top: $top, left: $left, opacity: $opacity);
 }
 
-body {
-    min-height: 100%;
-}
-
-@font-face {
-    font-family: LINE Brown;
-    src: url("/assets/fonts/LINEBrown.ttf");
-}
-
-
-@font-face {
-    font-family: jrnaver;
-    src: url("/assets/fonts/jrnaver.otf");
-}
-
-@font-face {
-  font-family: 'Jeju Gothic';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot);
-  src: url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.eot?#iefix) format('embedded-opentype'),
-       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff2) format('woff2'),
-       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.woff) format('woff'),
-       url(//fonts.gstatic.com/ea/jejugothic/v3/JejuGothic-Regular.ttf) format('truetype');
-}
-
-
-[ui-view] {
-    &.ng-enter, &.ng-leave {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+@mixin player-position($frame-prop, $player-prop, $num-of-player, $player-index) {
+    $position: player-position($frame-prop, $player-prop, $num-of-player, $player-index);
+    $opacity: map-get($position, opacity);
+    top: round(map-get($position, top));
+    left: round(map-get($position, left));
+    @if $opacity == 0 {
+        opacity: $opacity;
+        pointer-events: none;
     }
 }
 
-.slide-left {
-    [ui-view] {
-        &.ng-enter {
-            transition: all $page-transition-duration ease-in-out;
-            transform: translate3d(100%, 0, 0);
-        }
-        &.ng-enter-active {
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave {
-            transition: all $page-transition-duration ease-in-out;
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave-active {
-            transform: translate3d(-100%, 0, 0);
-        }
-    }
-}
-
-.slide-right {
-    [ui-view] {
-        &.ng-enter {
-            transition: all $page-transition-duration ease-in-out;
-            transform: translate3d(-100%, 0, 0);
-        }
-        &.ng-enter-active {
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave {
-            transition: all $page-transition-duration ease-in-out;
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave-active {
-            transform: translate3d(100%, 0, 0);
+.frame {
+    @each $frame-size, $frame-prop in $frame-sizes {
+        &.frame-#{$frame-size} {
+            position: relative;
+            width: map-get($frame-prop, frame-width);
+            height: map-get($frame-prop, frame-height);
+            border: 1px dashed black;
+            @for $num-of-player from 2 through 5 {
+                &.frame-#{$num-of-player} {
+                    @each $player-size, $player-prop in $player-sizes {
+                        $player-width: map-get($player-prop, width) * 1.7;
+                        .player {
+                            &.player-#{$player-size} {
+                                @each $player-index in $player-indexes {
+                                    &.player#{$player-index} {
+                                        @include player-position($frame-prop, $player-prop, $num-of-player, $player-index);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
-
-.slide-up {
-    [ui-view] {
-        &.ng-enter {
-            transition: all $page-transition-duration ease-in-out;
-            transform: translate3d(0, 100%, 0);
-        }
-        &.ng-enter-active {
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave {
-            transition: all $page-transition-duration ease-in-out;
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave-active {
-            transform: translate3d(0, -100%, 0);
-        }
-    }
-}
-
-.slide-down {
-    [ui-view] {
-        &.ng-enter {
-            transition: all $page-transition-duration ease-in-out;
-            transform: translate3d(0, -100%, 0);
-        }
-        &.ng-enter-active {
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave {
-            transition: all $page-transition-duration ease-in-out;
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave-active {
-            transform: translate3d(0, 100%, 0);
-        }
-    }
-}
-
-// injector
-@import 'animations/hero-move.animation.scss';
-@import 'controllers/almanac-ranger.controller.scss';
-@import 'controllers/front.controller.scss';
-@import 'controllers/lounge.controller.scss';
-@import 'controllers/nameplate.controller.scss';
-@import 'controllers/profile.controller.scss';
-@import 'controllers/sample-directive.controller.scss';
-@import 'controllers/sample-layout.controller.scss';
-@import 'controllers/wrap.controller.scss';
-@import 'directives/box-3d.directive.scss';
-@import 'directives/box.directive.scss';
-@import 'directives/cube.directive.scss';
-@import 'directives/figure-box.directive.scss';
-@import 'directives/frame.directive.scss';
-@import 'directives/game-package.directive.scss';
-@import 'directives/garnet.directive.scss';
-@import 'directives/header.directive.scss';
-@import 'directives/input-message.directive.scss';
-@import 'directives/login-box.directive.scss';
-@import 'directives/papercraft.directive.scss';
-@import 'directives/player.directive.scss';
-@import 'directives/playing-card-alt.directive.scss';
-@import 'directives/playing-card.directive.scss';
-@import 'directives/prototype.directive.scss';
-@import 'directives/ranger.directive.badge.scss';
-@import 'directives/ranger.directive.scss';
-@import 'directives/screen.directive.scss';
-@import 'directives/word-art.directive.scss';
-@import 'services/game-modal.controller.scss';
-// endinjector
