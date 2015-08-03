@@ -8,11 +8,51 @@ angular.module 'rangers'
   scope: true
   bindToController: true
   controllerAs: 'vm'
-  controller: ($scope, $element, $window, $document) ->
+  controller: ($scope, $element, $window, util, $document, frameUtil) ->
     vm = @
 
     # canvas = $element.find('canvas').get(0)
     # ctx = canvas.getContext('2d')
+
+    randomPlayer = ->
+      player =
+        client:
+          id: Math.floor(Math.random() * 1000000)
+
+    vm.players = [
+      randomPlayer()
+      randomPlayer()
+      randomPlayer()
+      randomPlayer()
+      randomPlayer()
+    ]
+
+    vm.me = vm.players[Math.floor(Math.random() * vm.players.length)].client
+
+    vm.myIndex = util.getMyIndex(vm.players, vm.me)
+    util.setPlayerIndex(vm.players, vm.me)
+
+    setPlayerPosition = (players, me) ->
+
+      # myIndex = util.getMyIndex(players, me)
+      util.setPlayerIndex(players, me)      
+      for player in players
+        if player.client.id isnt me.id
+          position = frameUtil.getPosition(players.length, player._index)
+          console.log position
+          player._position = position
+
+
+
+    
+    setPlayerPosition(vm.players, vm.me)
+
+    # frameUtil.getPosition(5, 1)
+    # frameUtil.getPosition(5, 2)
+    # frameUtil.getPosition(5, -2)
+    # frameUtil.getPosition(5, -1)
+
+    return
 
     vm.p1 = 
       character: 'u200e-at-32d-thum-140.png'

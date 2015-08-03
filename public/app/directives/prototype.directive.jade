@@ -1,7 +1,17 @@
 div(common-prototype-directive='')
-  
+  br
+  br
+  pre {{ vm.me | json }}
+  .frame(style='position:relative')
+    .player.player-md(ng-repeat='player in vm.players',
+      ng-if='vm.me.id !== player.client.id',
+      style='position:absolute',
+      ng-style='player._position')
+      | {{ player | json }}
   //- .background
-  .frame
+
+//- div
+  //- .frame  
 
     h4 player-sm
     .player.player-sm
