@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 
 $frame-sizes: (sm: (frame-width: 740px, frame-height: 705px, frame-padding: 40px), md: (frame-width: 840px, frame-height: 705px, frame-padding: 40px), lg: (frame-width: 940px, frame-height: 705px, frame-padding: 40px), xl: (frame-width: 1040px, frame-height: 705px, frame-padding: 40px), xxl: (frame-width: 1140px, frame-height: 705px, frame-padding: 40px));
 
@@ -6,111 +6,45 @@ $player-sizes: (sm: (width: 84px), md: (width: 112px), lg: (width: 150px), xl: (
 
 $player-indexes: 1 2 3 -3 -2 -1;
 
+$player-layout: (7: (indexes: 1 2 3 -3 -2 -1),6: (indexes: 1 2 3 -2 -1), 5: (indexes: 1 2 -2 -1), 4: (indexes: 1 2 -1), 3: (indexes: 1 -1), 2: (indexes: 1));
+
 @function player-position($frame-prop, $player-prop, $num-of-player, $player-index) {
-    $top: 0;
-    $left: 0;
-    $opacity: 1;
     $frame-width: map-get($frame-prop, frame-width);
     $frame-height: map-get($frame-prop, frame-height);
     $frame-padding: map-get($frame-prop, frame-padding);
     $player-width: map-get($player-prop, width) * 1.7;
-    @if $num-of-player == 6 {
-        $n: 5;
+    $top: $frame-padding;
+    $left: null;
+    $opacity: 1;
+    $n: $num-of-player - 1;
+    $layout: map-get($player-layout, $num-of-player);
+    @if $layout != null {
+        $indexes: map-get($layout, indexes);
+        $index: index($indexes, $player-index);
         $margin: ($frame-width - $frame-padding * 2 - $player-width * $n) / ($n - 1);
         $gap: $player-width + $margin;
-        @if $player-index == 1 {
-            $top: $frame-padding * 3;
-            $left: $frame-padding + $player-width * 0.5;
+        @if $num-of-player > 2 {
+            @if $index != null {
+                @if $num-of-player > 3 and ($index == 1 or $index == $num-of-player - 1) {
+                    $top: $frame-padding * 3;
+                }
+                $left: $frame-padding + $player-width * 0.5 + $gap * ($index - 1);
+            }
+            @else {
+                $position: player-position($frame-prop, $player-prop, $num-of-player + 1, $player-index);
+                $top: map-get($position, top);
+                $left: map-get($position, left);
+            }
         }
-        @else if $player-index == 2 {
-            $top: $frame-padding;
-            $left: $frame-padding + $player-width * 0.5 + $gap;
-        }
-        @else if $player-index == 3 {
-            $top: $frame-padding;
-            $left: $frame-padding + $player-width * 0.5 + $gap * 2;
-        }
-        @else if $player-index == -2 {
-            $top: $frame-padding;
-            $left: $frame-padding + $player-width * 0.5 + $gap * 3;
-        }
-        @else if $player-index == -1 {
-            $top: $frame-padding * 3;
-            $left: $frame-padding + $player-width * 0.5 + $gap * 4;
-        }
-    }    @if $num-of-player == 5 {
-        $n: 4;
-        $margin: ($frame-width - $frame-padding * 2 - $player-width * $n) / ($n - 1);
-        $gap: $player-width + $margin;
-        @if $player-index == 1 {
-            $top: $frame-padding * 3;
-            $left: $frame-padding + $player-width * 0.5;
-        }
-        @else if $player-index == 2 {
-            $top: $frame-padding;
-            $left: $frame-padding + $player-width * 0.5 + $gap;
-        }
-        @else if $player-index == -2 {
-            $top: $frame-padding;
-            $left: $frame-padding + $player-width * 0.5 + $gap * 2;
-        }
-        @else if $player-index == -1 {
-            $top: $frame-padding * 3;
-            $left: $frame-padding + $player-width * 0.5 + $gap * 3;
-        }
-    }
-    @if $num-of-player == 4 {
-        $n: 3;
-        $margin: ($frame-width - $frame-padding * 2 - $player-width * $n) / ($n - 1);
-        $gap: $player-width + $margin;
-        @if $player-index == 1 {
-            $top: $frame-padding * 3;
-            $left: $frame-padding + $player-width * 0.5;
-        }
-        @else if $player-index == 2 {
-            $top: $frame-padding;
-            $left: $frame-padding + $player-width * 0.5 + $gap;
-        }
-        @else if $player-index == -2 {
-            $opacity: 0;
-        }
-        @else if $player-index == -1 {
-            $top: $frame-padding * 3;
-            $left: $frame-padding + $player-width * 0.5 + $gap * 2;
-        }
-    }
-    @if $num-of-player == 3 {
-        $n: 2;
-        $margin: ($frame-width - $frame-padding * 2 - $player-width * $n) / ($n - 1);
-        $gap: $player-width + $margin;
-        @if $player-index == 1 {
-            $top: $frame-padding;
-            $left: $frame-padding + $player-width * 0.5;
-        }
-        @else if $player-index == 2 {
-            $opacity: 0;
-        }
-        @else if $player-index == -2 {
-            $opacity: 0;
-        }
-        @else if $player-index == -1 {
-            $top: $frame-padding;
-            $left: $frame-padding + $player-width * 0.5 + $gap;
-        }
-    }
-    @if $num-of-player == 2 {
-        @if $player-index == 1 {
-            $top: $frame-padding;
-            $left: 50%;
-        }
-        @else if $player-index == 2 {
-            $opacity: 0;
-        }
-        @else if $player-index == -2 {
-            $opacity: 0;
-        }
-        @else if $player-index == -1 {
-            $opacity: 0;
+        @else {
+            @if $index != null {
+                $left: 50%;
+            }
+            @else {
+                $position: player-position($frame-prop, $player-prop, $num-of-player + 1, $player-index);
+                $top: map-get($position, top);
+                $left: map-get($position, left);
+            }
         }
     }
     @return (top: $top, left: $left, opacity: $opacity);
@@ -118,12 +52,16 @@ $player-indexes: 1 2 3 -3 -2 -1;
 
 @mixin player-position($frame-prop, $player-prop, $num-of-player, $player-index) {
     $position: player-position($frame-prop, $player-prop, $num-of-player, $player-index);
+    $top: map-get($position, top);
+    $left: map-get($position, left);
     $opacity: map-get($position, opacity);
-    top: round(map-get($position, top));
-    left: round(map-get($position, left));
-    @if $opacity == 0 {
-        opacity: $opacity;
-        pointer-events: none;
+    @if $left != null {
+        top: round($top);
+        left: round($left);
+        @if $opacity == 0 {
+            opacity: $opacity;
+            pointer-events: none;
+        }
     }
 }
 
@@ -134,10 +72,11 @@ $player-indexes: 1 2 3 -3 -2 -1;
             width: map-get($frame-prop, frame-width);
             height: map-get($frame-prop, frame-height);
             border: 1px dashed black;
-            @for $num-of-player from 2 through 6 {
+            @for $num-of-player from 2 through 7 {
                 &.frame-#{$num-of-player} {
                     .player {
                         position: absolute;
+                        transition: top 1.75s cubic-bezier(.5, 0, 0.25, 1.5), left 1s cubic-bezier(.5, 0, 0.25, 1.5);
                         @each $player-size, $player-prop in $player-sizes {
                             &.player-#{$player-size} {
                                 $player-width: map-get($player-prop, width) * 1.7;
@@ -152,6 +91,16 @@ $player-indexes: 1 2 3 -3 -2 -1;
                     }
                 }
             }
+        }
+    }
+    .player {
+        &.ng-enter {
+            animation: bounceInDown 1s;
+        }
+        /*transition: left 3s linear !important;*/
+        &.ng-leave {
+            /*transition: left 3s linear !important;*/
+            animation: bounceOutUp 1s;
         }
     }
 }

@@ -140,7 +140,7 @@ div(sample-layout-controller='')
                   | {{ otherValign }}
 
           .col-sm-12
-            pre.code
+            //- pre.code
               | .frame
               span(ng-if='vm.layout.frameSize', style='background-color:yellow;color:red') .frame-{{ vm.layout.frameSize }}
               span .frame-<span style='color:red'>{{ vm.layout.num }}</span><br>
@@ -161,60 +161,92 @@ div(sample-layout-controller='')
                 span .player<span style='color:red'>2</span><br>
 
             .frame(class='frame-{{ vm.layout.frameSize }} frame-{{ vm.layout.num }}')
-              span(ng-if='vm.layout.num > 1')
-                .player.player-2(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
-                  class='player-{{ vm.layout.otherSize }}')
-                  label player-2
-                  .ranger-wrap
-                    ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
-                  .item-wrap
-                    div(ng-if='vm.player.show')
-                      div(ng-if='vm.layout.otherType === "horizontal"')
-                        playing-card(data-size='{{ vm.layout.otherSize }}')
-                      div(ng-if='vm.layout.otherType !== "horizontal"')
-                        playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- player -3
+              //- span(ng-if='vm.layout.num > 6')
+              .player.player-3(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                ng-if='vm.layout.num > 6',
+                class='player-{{ vm.layout.otherSize }}')
+                label player-3
+                .ranger-wrap
+                  ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                .item-wrap
+                  div(ng-if='vm.player.show')
+                    div(ng-if='vm.layout.otherType === "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize }}')
+                    div(ng-if='vm.layout.otherType !== "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- player -2
+              //- span(ng-if='vm.layout.num > 4')
+              .player.player-2(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                ng-if='vm.layout.num > 4',
+                class='player-{{ vm.layout.otherSize }}')
+                label player-2
+                .ranger-wrap
+                  ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                .item-wrap
+                  div(ng-if='vm.player.show')
+                    div(ng-if='vm.layout.otherType === "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize }}')
+                    div(ng-if='vm.layout.otherType !== "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
               //- player -1
-              span(ng-if='vm.layout.num > 1')
-                .player.player-1(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
-                  class='player-{{ vm.layout.otherSize }}')
-                  label player-1
-                  .ranger-wrap
-
-                    ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
-                  .item-wrap
-                    div(ng-if='vm.player.show')
-                      div(ng-if='vm.layout.otherType === "horizontal"')
-                        playing-card(data-size='{{ vm.layout.otherSize }}')
-                      div(ng-if='vm.layout.otherType !== "horizontal"')
-                        playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- span(ng-if='vm.layout.num > 2')
+              .player.player-1(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                ng-if='vm.layout.num > 2',
+                class='player-{{ vm.layout.otherSize }}')
+                label player-1
+                .ranger-wrap
+                  ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                .item-wrap
+                  div(ng-if='vm.player.show')
+                    div(ng-if='vm.layout.otherType === "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize }}')
+                    div(ng-if='vm.layout.otherType !== "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
               //- player 1
-              span(ng-if='vm.layout.num > 1')
-                .player.player1(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
-                  class='player-{{ vm.layout.otherSize }}')
-                  label player1
-                  .ranger-wrap
-                    ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
-                  .item-wrap
-                    div(ng-if='vm.player.show')
-                      div(ng-if='vm.layout.otherType === "horizontal"')
-                        playing-card(data-size='{{ vm.layout.otherSize }}')
-                      div(ng-if='vm.layout.otherType !== "horizontal"')
-                        playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- span(ng-if='vm.layout.num > 1')
+              .player.player1(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                ng-if='vm.layout.num > 1',
+                class='player-{{ vm.layout.otherSize }}')
+                label player1
+                .ranger-wrap
+                  ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                .item-wrap
+                  div(ng-if='vm.player.show')
+                    div(ng-if='vm.layout.otherType === "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize }}')
+                    div(ng-if='vm.layout.otherType !== "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
               //- player 2
-              span(ng-if='vm.layout.num > 1')
-                .player.player2(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
-                  class='player-{{ vm.layout.otherSize }}')
-                  label player2
-                  .ranger-wrap
-                    ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
-                  .item-wrap
-                    div(ng-if='vm.player.show')
-                      div(ng-if='vm.layout.otherType === "horizontal"')
-                        playing-card(data-size='{{ vm.layout.otherSize }}')
-                      div(ng-if='vm.layout.otherType !== "horizontal"')
-                        playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- span(ng-if='vm.layout.num > 3')
+              .player.player2(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                ng-if='vm.layout.num > 3',
+                class='player-{{ vm.layout.otherSize }}')
+                label player2
+                .ranger-wrap
+                  ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                .item-wrap
+                  div(ng-if='vm.player.show')
+                    div(ng-if='vm.layout.otherType === "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize }}')
+                    div(ng-if='vm.layout.otherType !== "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
+              //- player 3
+              //- span(ng-if='vm.layout.num > 5')
+              .player.player3(ng-class='{ "player-horizontal": vm.layout.otherType === "horizontal" }',
+                ng-if='vm.layout.num > 5',
+                class='player-{{ vm.layout.otherSize }}')
+                label player3
+                .ranger-wrap
+                  ranger(ng-if='vm.player.show', data-size='{{ vm.layout.otherSize }}', data-client='vm.player.client', data-valign='{{ vm.layout.otherValign }}')
+                .item-wrap
+                  div(ng-if='vm.player.show')
+                    div(ng-if='vm.layout.otherType === "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize }}')
+                    div(ng-if='vm.layout.otherType !== "horizontal"')
+                      playing-card(data-size='{{ vm.layout.otherSize | smallerSize }}')
               //- me
-              .player.player-me(ng-class='{ "player-horizontal": vm.layout.myType === "horizontal" }',
+              //- .player.player-me(ng-class='{ "player-horizontal": vm.layout.myType === "horizontal" }',
                 class='player-{{ vm.layout.mySize }}')
                 label player-me
                 .ranger-wrap
