@@ -70,7 +70,7 @@ angular.module 'rangers'
 
     console.log data.players.length
     util.arrayMerge vm.data.quiz, data.quiz, 'uniq', true
-    console.log data
+    # console.log data
     vm.data.lastWinner = data.lastWinner
     vm.data.state = data.state
     vm.data.myIndex = util.getMyIndex(vm.data.players, vm.me)
