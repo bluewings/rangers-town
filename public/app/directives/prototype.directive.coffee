@@ -13,6 +13,17 @@ angular.module 'rangers'
 
     # canvas = $element.find('canvas').get(0)
     # ctx = canvas.getContext('2d')
+    vm.remove = (player) ->
+      index = vm.players.indexOf player
+      vm.players.splice(index, 1)
+      setPlayerPosition(vm.players, vm.me)
+      # alert index
+    vm.addPlayer = ->
+      player = randomPlayer()
+
+      index = Math.floor(Math.random() * vm.players.length)
+      vm.players.splice(index, 0, player)
+      setPlayerPosition(vm.players, vm.me)
 
     randomPlayer = ->
       player =

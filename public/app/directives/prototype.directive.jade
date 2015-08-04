@@ -2,12 +2,17 @@ div(common-prototype-directive='')
   br
   br
   pre {{ vm.me | json }}
+  button.btn.btn-default(ng-click='vm.addPlayer()') add player
   .frame(style='position:relative')
     .player.player-md(ng-repeat='player in vm.players',
       ng-if='vm.me.id !== player.client.id',
       style='position:absolute',
+      
       ng-style='player._position')
       | {{ player | json }}
+      button.btn.btn-block.btn-default(ng-click='vm.remove(player)')
+        | dismiss
+      input.form-control
   //- .background
 
 //- div

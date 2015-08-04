@@ -14,7 +14,10 @@
         height: 705px;
         border: 1px dashed black;
         text-align: left;
-        padding: 20px;
+        /*padding: 20px;*/
+        .player {
+            transition: all 1s cubic-bezier(.5, 0, 0.25, 1.5);
+        }
     }
     .card-wrap {
         border: 1px dashed black;

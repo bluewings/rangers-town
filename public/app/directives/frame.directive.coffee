@@ -10,7 +10,7 @@ frameSizes =
 
 playerSizes =
   sm: { width: 84 }
-  md: { width: 122 }
+  md: { width: 112 }
   lg: { width: 150 }
   xl: { width: 200 }
 
@@ -53,18 +53,24 @@ angular.module 'rangers'
     margin = (frame.width - frame.padding * 2 - playerWidth * (numOfPlayer - 1)) / (numOfPlayer - 2);
     gap = playerWidth + margin
 
+
+    console.log '>>> gap : ' + playerWidth + ' + ' + margin + ' = ' + gap 
+    top = frame.padding
     if numOfPlayer > 2
-      top = frame.padding
+
       if numOfPlayer > 3 and (index is 0 or index is (numOfPlayer - 2))
         top = frame.padding * 3
-      left = frame.padding + playerWidth * .5 + gap * (index)
+      left = frame.padding + playerWidth * .5 + gap * index
+    else if numOfPlayer is 2
+      left = frame.width / 2
+
 
 
     # console.log frame, player, left, top
 
-    left: left
-    top: top
-    marginLeft: playerWidth * -.5
+    left: Math.floor(left)
+    top: Math.floor(top)
+    marginLeft: Math.floor(playerWidth * -.5)
 
 
 
