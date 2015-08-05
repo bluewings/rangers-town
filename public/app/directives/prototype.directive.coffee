@@ -45,11 +45,20 @@ angular.module 'rangers'
 
     setPlayerPosition = (players, me) ->
 
+      if players.length > 5
+        vm.playerSize = 'sm'
+      else if players.length > 3
+        vm.playerSize = 'md'
+      else
+        vm.playerSize = 'lg'
+
       # myIndex = util.getMyIndex(players, me)
       util.setPlayerIndex(players, me)      
       for player in players
         if player.client.id isnt me.id
-          position = frameUtil.getPosition(players.length, player._index)
+          position = frameUtil.getPosition(players.length, player._index, {
+            playerSize: vm.playerSize
+          })
           console.log position
           player._position = position
 

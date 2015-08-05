@@ -4,8 +4,9 @@ div(common-prototype-directive='')
   pre {{ vm.me | json }}
   button.btn.btn-default(ng-click='vm.addPlayer()') add player
   .frame(style='position:relative')
-    .player.player-md(ng-repeat='player in vm.players',
+    .player(ng-repeat='player in vm.players',
       ng-if='vm.me.id !== player.client.id',
+      class='player-{{ vm.playerSize }}',
       style='position:absolute',
       
       ng-style='player._position')
